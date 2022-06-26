@@ -322,7 +322,6 @@ Citation
    :caption: Functions
 
    functional/backends.rst
-   functional/frontends.rst
    functional/ivy.rst
 
 
