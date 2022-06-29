@@ -392,12 +392,12 @@
 <span class="sd">    &gt;&gt;&gt; epsilon = 1e-6</span>
 <span class="sd">    &gt;&gt;&gt; adam_step_delta = ivy.adam_step(dcdw, mw, vw, step, beta1, beta2, epsilon)</span>
 <span class="sd">    &gt;&gt;&gt; print(adam_step_delta)</span>
-<span class="sd">        (ivy.array([[ 1.,  1., -1.],</span>
-<span class="sd">                    [ 1.,  1.,  1.]]),</span>
-<span class="sd">       ivy.array([[ 0.14,  0.56, -0.42],</span>
-<span class="sd">                  [ 0.28,  0.42,  0.07]]),</span>
-<span class="sd">       ivy.array([[0.05  , 0.8   , 0.45  ],</span>
-<span class="sd">                  [0.2   , 0.45  , 0.0125]]))</span>
+<span class="sd">        (ivy.array([[1., 1., -1.],</span>
+<span class="sd">                    [1., 1., 1.]]),</span>
+<span class="sd">        ivy.array([[ 0.14, 0.56, -0.42],</span>
+<span class="sd">                  [ 0.28, 0.42, 0.07]]),</span>
+<span class="sd">        ivy.array([[0.05, 0.8, 0.45],</span>
+<span class="sd">                  [0.2, 0.45, 0.0125]]))</span>
 
 <span class="sd">    &gt;&gt;&gt; dcdw = ivy.array([1, -2, 3])</span>
 <span class="sd">    &gt;&gt;&gt; mw = ivy.zeros(1)</span>
@@ -405,8 +405,8 @@
 <span class="sd">    &gt;&gt;&gt; step = ivy.array(3.6)</span>
 <span class="sd">    &gt;&gt;&gt; adam_step_delta = ivy.adam_step(dcdw, mw, vw, step)</span>
 <span class="sd">    &gt;&gt;&gt; print(adam_step_delta)</span>
-<span class="sd">        (ivy.array([ 0.601, -0.601,  0.601]),</span>
-<span class="sd">        ivy.array([ 0.1, -0.2,  0.3]),</span>
+<span class="sd">        (ivy.array([ 0.601, -0.601, 0.601]),</span>
+<span class="sd">        ivy.array([ 0.1, -0.2, 0.3]),</span>
 <span class="sd">        ivy.array([0.001, 0.004, 0.009]))</span>
 
 
@@ -431,9 +431,9 @@
 <span class="sd">    &gt;&gt;&gt; epsilon = 1e-5</span>
 <span class="sd">    &gt;&gt;&gt; adam_step_delta = ivy.adam_step(dcdw, mw, vw, step, beta1, beta2, epsilon)</span>
 <span class="sd">    &gt;&gt;&gt; print(adam_step_delta)</span>
-<span class="sd">        (ivy.array([ 0.209 , -0.271 ,  0.0717,  0.    ,  0.142 , -0.209 ,  0.182 ,0.283 , -0.0717,  0.209 ]),</span>
-<span class="sd">        ivy.array([ 0.72 , -0.96 ,  0.24 ,  0.   ,  0.48 , -0.72 ,  0.624,  1.01 ,-0.24 ,  0.72 ]),</span>
-<span class="sd">        ivy.array([1.06 , 1.12 , 1.   , 0.992, 1.02 , 1.06 , 1.05 , 1.13 , 1.   ,1.06 ]))</span>
+<span class="sd">        (ivy.array([0.209, -0.271,  0.0717,  0., 0.142, -0.209, 0.182, 0.283, -0.0717, 0.209]),</span>
+<span class="sd">        ivy.array([0.72, -0.96, 0.24, 0., 0.48, -0.72, 0.624, 1.01, -0.24, 0.72]),</span>
+<span class="sd">        ivy.array([1.06, 1.12, 1., 0.992, 1.02, 1.06, 1.05, 1.13, 1., 1.06]))</span>
 
 <span class="sd">    with mixture of both :code:`ivy.NativeArray`  and :code:&#39;ivy.Array&#39; inputs:</span>
 

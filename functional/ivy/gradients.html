@@ -201,12 +201,12 @@ ivy.array([0.001, 0.004, 0.009]))</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">epsilon</span> <span class="o">=</span> <span class="mf">1e-6</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">adam_step_delta</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">adam_step</span><span class="p">(</span><span class="n">dcdw</span><span class="p">,</span> <span class="n">mw</span><span class="p">,</span> <span class="n">vw</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">beta1</span><span class="p">,</span> <span class="n">beta2</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">adam_step_delta</span><span class="p">)</span>
-<span class="go">    (ivy.array([[ 1.,  1., -1.],</span>
-<span class="go">                [ 1.,  1.,  1.]]),</span>
-<span class="go">   ivy.array([[ 0.14,  0.56, -0.42],</span>
-<span class="go">              [ 0.28,  0.42,  0.07]]),</span>
-<span class="go">   ivy.array([[0.05  , 0.8   , 0.45  ],</span>
-<span class="go">              [0.2   , 0.45  , 0.0125]]))</span>
+<span class="go">    (ivy.array([[1., 1., -1.],</span>
+<span class="go">                [1., 1., 1.]]),</span>
+<span class="go">    ivy.array([[ 0.14, 0.56, -0.42],</span>
+<span class="go">              [ 0.28, 0.42, 0.07]]),</span>
+<span class="go">    ivy.array([[0.05, 0.8, 0.45],</span>
+<span class="go">              [0.2, 0.45, 0.0125]]))</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dcdw</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
@@ -215,8 +215,8 @@ ivy.array([0.001, 0.004, 0.009]))</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">step</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mf">3.6</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">adam_step_delta</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">adam_step</span><span class="p">(</span><span class="n">dcdw</span><span class="p">,</span> <span class="n">mw</span><span class="p">,</span> <span class="n">vw</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">adam_step_delta</span><span class="p">)</span>
-<span class="go">    (ivy.array([ 0.601, -0.601,  0.601]),</span>
-<span class="go">    ivy.array([ 0.1, -0.2,  0.3]),</span>
+<span class="go">    (ivy.array([ 0.601, -0.601, 0.601]),</span>
+<span class="go">    ivy.array([ 0.1, -0.2, 0.3]),</span>
 <span class="go">    ivy.array([0.001, 0.004, 0.009]))</span>
 </pre></div>
 </div>
@@ -241,9 +241,9 @@ ivy.array([0.001, 0.004, 0.009]))</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">epsilon</span> <span class="o">=</span> <span class="mf">1e-5</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">adam_step_delta</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">adam_step</span><span class="p">(</span><span class="n">dcdw</span><span class="p">,</span> <span class="n">mw</span><span class="p">,</span> <span class="n">vw</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">beta1</span><span class="p">,</span> <span class="n">beta2</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">adam_step_delta</span><span class="p">)</span>
-<span class="go">    (ivy.array([ 0.209 , -0.271 ,  0.0717,  0.    ,  0.142 , -0.209 ,  0.182 ,0.283 , -0.0717,  0.209 ]),</span>
-<span class="go">    ivy.array([ 0.72 , -0.96 ,  0.24 ,  0.   ,  0.48 , -0.72 ,  0.624,  1.01 ,-0.24 ,  0.72 ]),</span>
-<span class="go">    ivy.array([1.06 , 1.12 , 1.   , 0.992, 1.02 , 1.06 , 1.05 , 1.13 , 1.   ,1.06 ]))</span>
+<span class="go">    (ivy.array([0.209, -0.271,  0.0717,  0., 0.142, -0.209, 0.182, 0.283, -0.0717, 0.209]),</span>
+<span class="go">    ivy.array([0.72, -0.96, 0.24, 0., 0.48, -0.72, 0.624, 1.01, -0.24, 0.72]),</span>
+<span class="go">    ivy.array([1.06, 1.12, 1., 0.992, 1.02, 1.06, 1.05, 1.13, 1., 1.06]))</span>
 </pre></div>
 </div>
 <p>with mixture of both <code class="code docutils literal notranslate"><span class="pre">ivy.NativeArray</span></code>  and :code:’ivy.Array’ inputs:</p>
