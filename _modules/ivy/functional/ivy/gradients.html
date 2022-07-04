@@ -460,7 +460,7 @@
 <span class="sd">    &gt;&gt;&gt; beta2 = 0.976</span>
 <span class="sd">    &gt;&gt;&gt; epsilon = 1e-5</span>
 <span class="sd">    &gt;&gt;&gt; adam_step_delta = ivy.adam_step(dcdw, mw, vw, step, beta1, beta2, epsilon)</span>
-<span class="sd">    &gt;&gt;&gt; print(adam_step_delta)</span>
+<span class="sd">    &gt;&gt;&gt; print((adam_step_delta[0], adam_step_delta[1],adam_step_delta[2]))</span>
 <span class="sd">        ({</span>
 <span class="sd">            a: ivy.array([0., 0.626, 0.626]),</span>
 <span class="sd">            b: ivy.array([0.626, 0.626, 0.626])</span>
