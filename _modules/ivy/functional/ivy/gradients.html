@@ -441,7 +441,7 @@
 <span class="sd">    &gt;&gt;&gt; mw = ivy.native_array([0, 0, 0])</span>
 <span class="sd">    &gt;&gt;&gt; vw = ivy.zeros(1)</span>
 <span class="sd">    &gt;&gt;&gt; step = ivy.native_array([2])</span>
-<span class="sd">    &gt;&gt;&gt; adam_delta = ivy.adam_step(dcdw, mw, vw, step)</span>
+<span class="sd">    &gt;&gt;&gt; adam_step_delta = ivy.adam_step(dcdw, mw, vw, step)</span>
 <span class="sd">    &gt;&gt;&gt; print(adam_step_delta)</span>
 <span class="sd">        (ivy.array([0.744, 0.744, 0.744]),</span>
 <span class="sd">        ivy.array([0.1, 0.2, 0.3]),</span>
@@ -460,22 +460,16 @@
 <span class="sd">    &gt;&gt;&gt; beta2 = 0.976</span>
 <span class="sd">    &gt;&gt;&gt; epsilon = 1e-5</span>
 <span class="sd">    &gt;&gt;&gt; adam_step_delta = ivy.adam_step(dcdw, mw, vw, step, beta1, beta2, epsilon)</span>
-<span class="sd">    &gt;&gt;&gt; print(adam_step_delta)</span>
-<span class="sd">    {</span>
-<span class="sd">        a: (list[3], &lt;class ivy.array.Array&gt; shape=[3]),</span>
-<span class="sd">        b: (list[3], &lt;class ivy.array.Array&gt; shape=[3])</span>
-<span class="sd">    }</span>
-<span class="sd">    &gt;&gt;&gt; print(adam_step_delta[0])</span>
+<span class="sd">    &gt;&gt;&gt; for i in range(adam_step_delta.shape[0]):</span>
+<span class="sd">    ...     print(adam_step_delta[i])</span>
 <span class="sd">    {</span>
 <span class="sd">        a: ivy.array([0., 0.626, 0.626]),</span>
 <span class="sd">        b: ivy.array([0.626, 0.626, 0.626])</span>
 <span class="sd">    }</span>
-<span class="sd">    &gt;&gt;&gt; print(adam_step_delta[1])</span>
 <span class="sd">    {</span>
 <span class="sd">        a: ivy.array([0., 0.13, 0.26]),</span>
 <span class="sd">        b: ivy.array([0.39, 0.52, 0.65])</span>
 <span class="sd">    }</span>
-<span class="sd">    &gt;&gt;&gt; print(adam_step_delta[2])</span>
 <span class="sd">    {</span>
 <span class="sd">        a: ivy.array([0., 0.024, 0.096]),</span>
 <span class="sd">        b: ivy.array([0.216, 0.384, 0.6])</span>
