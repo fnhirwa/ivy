@@ -274,10 +274,24 @@ from ‘/ivy/ivy/functional/backends/torch/__init__.py’&gt;</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">epsilon</span> <span class="o">=</span> <span class="mf">1e-5</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">adam_step_delta</span><span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">adam_step</span><span class="p">(</span><span class="n">dcdw</span><span class="p">,</span> <span class="n">mw</span><span class="p">,</span> <span class="n">vw</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">beta1</span><span class="p">,</span> <span class="n">beta2</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">adam_step_delta</span><span class="p">)</span>
-<span class="go">{</span>
-<span class="go">    a: (list[3], &lt;class ivy.array.Array&gt; shape=[3, 3]),</span>
-<span class="go">    b: (list[3], &lt;class ivy.array.Array&gt; shape=[3, 3])</span>
-<span class="go">}</span>
+<span class="go">    ({a:ivy.array([[0.626,0.626,0.626],</span>
+<span class="go">                [0.626,0.626,0.626],</span>
+<span class="go">                [0.626,0.626,0.626]]),</span>
+<span class="go">    b:ivy.array([[0.626,0.626,0.626],</span>
+<span class="go">                [0.626,0.626,0.626],</span>
+<span class="go">                [0.626,0.626,0.626]])},</span>
+<span class="go">    {a:ivy.array([[0.52,0.52,0.52],</span>
+<span class="go">                [0.65,0.65,0.65],</span>
+<span class="go">                [0.78,0.78,0.78]]),</span>
+<span class="go">    b:ivy.array([[0.65,0.65,0.65],</span>
+<span class="go">                [0.78,0.78,0.78],</span>
+<span class="go">                [0.91,0.91,0.91]])},</span>
+<span class="go">    {a:ivy.array([[0.384,0.384,0.384],</span>
+<span class="go">                [0.6,0.6,0.6],</span>
+<span class="go">                [0.864,0.864,0.864]]),</span>
+<span class="go">    b:ivy.array([[0.6,0.6,0.6],</span>
+<span class="go">                [0.864,0.864,0.864],</span>
+<span class="go">                [1.18,1.18,1.18]])})</span>
 </pre></div>
 </div>
 </dd></dl>
