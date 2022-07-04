@@ -267,17 +267,11 @@ ivy.array([0.001, 0.004, 0.009]))</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">beta2</span> <span class="o">=</span> <span class="mf">0.976</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">epsilon</span> <span class="o">=</span> <span class="mf">1e-5</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">adam_step_delta</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">adam_step</span><span class="p">(</span><span class="n">dcdw</span><span class="p">,</span> <span class="n">mw</span><span class="p">,</span> <span class="n">vw</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">beta1</span><span class="p">,</span> <span class="n">beta2</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">((</span><span class="n">adam_step_delta</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">adam_step_delta</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">adam_step_delta</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
-<span class="go">    ({</span>
-<span class="go">        a: ivy.array([0., 0.626, 0.626]),</span>
-<span class="go">        b: ivy.array([0.626, 0.626, 0.626])</span>
-<span class="go">    }, {</span>
-<span class="go">        a: ivy.array([0., 0.13, 0.26]),</span>
-<span class="go">        b: ivy.array([0.39, 0.52, 0.65])</span>
-<span class="go">    }, {</span>
-<span class="go">        a: ivy.array([0., 0.024, 0.096]),</span>
-<span class="go">        b: ivy.array([0.216, 0.384, 0.6])</span>
-<span class="go">    })</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">adam_step_delta</span><span class="p">)</span>
+<span class="go">{</span>
+<span class="go">    a: (list[3], &lt;class ivy.array.Array&gt; shape=[3]),</span>
+<span class="go">    b: (list[3], &lt;class ivy.array.Array&gt; shape=[3])</span>
+<span class="go">}</span>
 </pre></div>
 </div>
 </dd></dl>
