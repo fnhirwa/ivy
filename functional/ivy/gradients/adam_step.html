@@ -257,12 +257,13 @@ ivy.array([0.001, 0.004, 0.009]))</p>
 &gt;&gt;&gt; beta2 = 0.976
 &gt;&gt;&gt; epsilon = 1e-5
 &gt;&gt;&gt; adam_step_delta = ivy.adam_step(dcdw, mw, vw, step, beta1, beta2, epsilon)
-&gt;&gt;&gt; print(adam_step_delta)</p>
+&gt;&gt;&gt; print(adam_step_delta)
+({</p>
 <blockquote>
-<div><dl class="simple">
-<dt>({</dt><dd><p>a: ivy.array([0., 0.626, 0.626]),
+<div><p>a: ivy.array([0., 0.626, 0.626]),
 b: ivy.array([0.626, 0.626, 0.626])</p>
-</dd>
+</div></blockquote>
+<dl class="simple">
 <dt>}, {</dt><dd><p>a: ivy.array([0., 0.13, 0.26]),
 b: ivy.array([0.39, 0.52, 0.65])</p>
 </dd>
@@ -271,7 +272,6 @@ b: ivy.array([0.216, 0.384, 0.6])</p>
 </dd>
 </dl>
 <p>})</p>
-</div></blockquote>
 </dd></dl>
 
 <div class="line-block">
