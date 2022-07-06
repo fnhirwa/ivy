@@ -164,9 +164,9 @@ to weights ws, using ADAM update. <a href="#id1"><span class="problematic" id="i
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>dcdw</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>]) – Derivates of the cost c with respect to the weights ws, [dc/dw for w in ws].</p></li>
-<li><p><strong>mw</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>]) – running average of the gradients</p></li>
-<li><p><strong>vw</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>]) – running average of second moments of the gradients</p></li>
+<li><p><strong>dcdw</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>]) – Derivates of the cost c with respect to the weights ws, [dc/dw for w in ws].</p></li>
+<li><p><strong>mw</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>]) – running average of the gradients</p></li>
+<li><p><strong>vw</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>]) – running average of second moments of the gradients</p></li>
 <li><p><strong>step</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – training step</p></li>
 <li><p><strong>beta1</strong> – gradient forgetting factor (Default value = 0.9)</p></li>
 <li><p><strong>beta2</strong> – second moment of gradient forgetting factor (Default value = 0.999)</p></li>
@@ -260,41 +260,29 @@ ivy.array([0.001, 0.004, 0.009]))</p>
 </pre></div>
 </div>
 <p>with :code: ‘ivy.container’ inputs:
-&gt;&gt;&gt; ivy.set_backend(‘torch’)
-&gt;&gt;&gt; ivy.get_backend()</p>
+&gt;&gt;&gt; dcdw = ivy.Container(a=ivy.array([0., 1., 2.]),                             b=ivy.array([3., 4., 5.]))
+&gt;&gt;&gt; mw = ivy.Container(a=ivy.array([0., 0., 0.]),                           b=ivy.array([0., 0., 0.]))
+&gt;&gt;&gt; vw = ivy.Container(a=ivy.array([0.,]),                           b=ivy.array([0.,]))
+&gt;&gt;&gt; step = ivy.array([3.4])
+&gt;&gt;&gt; beta1 = 0.87
+&gt;&gt;&gt; beta2 = 0.976
+&gt;&gt;&gt; epsilon = 1e-5
+&gt;&gt;&gt; adam_step_delta = ivy.adam_step(dcdw, mw, vw, step, beta1, beta2, epsilon)
+&gt;&gt;&gt; print(adam_step_delta)</p>
 <blockquote>
-<div><p>&lt;module ‘ivy.functional.backends.torch’
-from ‘/ivy/ivy/functional/backends/torch/__init__.py’&gt;</p>
+<div><dl class="simple">
+<dt>({</dt><dd><p>a: ivy.array([0., 0.626, 0.626]),
+b: ivy.array([0.626, 0.626, 0.626])</p>
+</dd>
+<dt>}, {</dt><dd><p>a: ivy.array([0., 0.13, 0.26]),
+b: ivy.array([0.39, 0.52, 0.65])</p>
+</dd>
+<dt>}, {</dt><dd><p>a: ivy.array([0., 0.024, 0.096]),
+b: ivy.array([0.216, 0.384, 0.6])</p>
+</dd>
+</dl>
+<p>})</p>
 </div></blockquote>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dcdw</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">4.</span><span class="p">],</span> <span class="p">[</span><span class="mf">5.</span><span class="p">],</span> <span class="p">[</span><span class="mf">6.</span><span class="p">]]),</span>                                            <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">5.</span><span class="p">],</span> <span class="p">[</span><span class="mf">6.</span><span class="p">],</span> <span class="p">[</span><span class="mf">7.</span><span class="p">]]))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mw</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">vw</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">step</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.4</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">beta1</span> <span class="o">=</span> <span class="mf">0.87</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">beta2</span> <span class="o">=</span> <span class="mf">0.976</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">epsilon</span> <span class="o">=</span> <span class="mf">1e-5</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">adam_step_delta</span><span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">adam_step</span><span class="p">(</span><span class="n">dcdw</span><span class="p">,</span> <span class="n">mw</span><span class="p">,</span> <span class="n">vw</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">beta1</span><span class="p">,</span> <span class="n">beta2</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">adam_step_delta</span><span class="p">)</span>
-<span class="go">    ({a:ivy.array([[0.626,0.626,0.626],</span>
-<span class="go">                [0.626,0.626,0.626],</span>
-<span class="go">                [0.626,0.626,0.626]]),</span>
-<span class="go">    b:ivy.array([[0.626,0.626,0.626],</span>
-<span class="go">                [0.626,0.626,0.626],</span>
-<span class="go">                [0.626,0.626,0.626]])},</span>
-<span class="go">    {a:ivy.array([[0.52,0.52,0.52],</span>
-<span class="go">                [0.65,0.65,0.65],</span>
-<span class="go">                [0.78,0.78,0.78]]),</span>
-<span class="go">    b:ivy.array([[0.65,0.65,0.65],</span>
-<span class="go">                [0.78,0.78,0.78],</span>
-<span class="go">                [0.91,0.91,0.91]])},</span>
-<span class="go">    {a:ivy.array([[0.384,0.384,0.384],</span>
-<span class="go">                [0.6,0.6,0.6],</span>
-<span class="go">                [0.864,0.864,0.864]]),</span>
-<span class="go">    b:ivy.array([[0.6,0.6,0.6],</span>
-<span class="go">                [0.864,0.864,0.864],</span>
-<span class="go">                [1.18,1.18,1.18]])})</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="py function">
