@@ -251,17 +251,17 @@
 <span class="sd">    &gt;&gt;&gt; w = ivy.zeros((3, 2))</span>
 <span class="sd">    &gt;&gt;&gt; is_var = ivy.is_variable(w)</span>
 <span class="sd">    &gt;&gt;&gt; print(is_var)</span>
-<span class="sd">        True</span>
+<span class="sd">        False</span>
 
 <span class="sd">    &gt;&gt;&gt; y = ivy.array([2, 5, 8, 9, 12])</span>
 <span class="sd">    &gt;&gt;&gt; is_var = ivy.is_variable(y)</span>
 <span class="sd">    &gt;&gt;&gt; print(is_var)</span>
-<span class="sd">        True</span>
+<span class="sd">        False</span>
 
 <span class="sd">    &gt;&gt;&gt; z = ivy.array([[2], [3], [5]])</span>
 <span class="sd">    &gt;&gt;&gt; is_var = ivy.is_variable(z)</span>
 <span class="sd">    &gt;&gt;&gt; print(is_var)</span>
-<span class="sd">        True</span>
+<span class="sd">        False</span>
 
 <span class="sd">    with :code:`ivy.NativeArray` inputs:</span>
 
@@ -274,26 +274,26 @@
 <span class="sd">    &gt;&gt;&gt; w = ivy.native_array([2, 3, 4])</span>
 <span class="sd">    &gt;&gt;&gt; is_var = ivy.is_variable(w)</span>
 <span class="sd">    &gt;&gt;&gt; print(is_var)</span>
-<span class="sd">        True</span>
+<span class="sd">        False</span>
 <span class="sd">    &gt;&gt;&gt; m = ivy.native_array([-1, 0., 0.8, 9])</span>
 <span class="sd">    &gt;&gt;&gt; is_var =  ivy.is_variable(m)</span>
 <span class="sd">    &gt;&gt;&gt; print(is_var)</span>
-<span class="sd">        True</span>
+<span class="sd">        False</span>
 
 <span class="sd">    with :code:`ivy.Container` inputs:</span>
 <span class="sd">    &gt;&gt;&gt; x = ivy.Container(a = ivy.array(3.2), b=ivy.array(2))</span>
 <span class="sd">    &gt;&gt;&gt; is_var = ivy.is_variable(x, True)</span>
 <span class="sd">    &gt;&gt;&gt; print(is_var)</span>
 <span class="sd">    {</span>
-<span class="sd">        a: false,</span>
-<span class="sd">        b: false</span>
+<span class="sd">        a: False,</span>
+<span class="sd">        b: False</span>
 <span class="sd">    }</span>
 <span class="sd">    &gt;&gt;&gt; n = ivy.Container(a=ivy.array([2, -1, 0]), b=ivy.array([0., -0.4, 8]))</span>
 <span class="sd">    &gt;&gt;&gt; is_var = ivy.is_variable(n)</span>
 <span class="sd">    &gt;&gt;&gt; print(is_var)</span>
 <span class="sd">    {</span>
-<span class="sd">        a: true,</span>
-<span class="sd">        b: true</span>
+<span class="sd">        a: False,</span>
+<span class="sd">        b: False</span>
 <span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
