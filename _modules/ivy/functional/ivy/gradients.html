@@ -275,12 +275,14 @@
 <span class="sd">    &gt;&gt;&gt; is_var = ivy.is_variable(w)</span>
 <span class="sd">    &gt;&gt;&gt; print(is_var)</span>
 <span class="sd">        False</span>
+
 <span class="sd">    &gt;&gt;&gt; m = ivy.native_array([-1, 0., 0.8, 9])</span>
 <span class="sd">    &gt;&gt;&gt; is_var =  ivy.is_variable(m)</span>
 <span class="sd">    &gt;&gt;&gt; print(is_var)</span>
 <span class="sd">        False</span>
 
 <span class="sd">    with :code:`ivy.Container` inputs:</span>
+
 <span class="sd">    &gt;&gt;&gt; x = ivy.Container(a = ivy.array(3.2), b=ivy.array(2))</span>
 <span class="sd">    &gt;&gt;&gt; is_var = ivy.is_variable(x, True)</span>
 <span class="sd">    &gt;&gt;&gt; print(is_var)</span>
@@ -288,6 +290,7 @@
 <span class="sd">        a: False,</span>
 <span class="sd">        b: False</span>
 <span class="sd">    }</span>
+
 <span class="sd">    &gt;&gt;&gt; n = ivy.Container(a=ivy.array([2, -1, 0]), b=ivy.array([0., -0.4, 8]))</span>
 <span class="sd">    &gt;&gt;&gt; is_var = ivy.is_variable(n)</span>
 <span class="sd">    &gt;&gt;&gt; print(is_var)</span>
