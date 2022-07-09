@@ -2200,7 +2200,7 @@
 <span class="sd">    with :code:`ivy.Container` inputs:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([2, -1, 0]), b=ivy.array([0., -0.4, 8]))</span>
-<span class="sd">    &gt;&gt;&gt; is_var = x.is_variable()</span>
+<span class="sd">    &gt;&gt;&gt; is_var = x.is_variable(exclusive=True)</span>
 <span class="sd">    &gt;&gt;&gt; print(is_var)</span>
 <span class="sd">    {</span>
 <span class="sd">        a: false,</span>
