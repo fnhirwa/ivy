@@ -161,13 +161,13 @@
 This method simply wraps the function, and so the docstring
 for ivy.is_variable also applies to this method with minimal changes.
 .. rubric:: Examples</p>
-<p>with <code class="code docutils literal notranslate"><span class="pre">ivy.Array</span></code> input:
-&gt;&gt;&gt; x = ivy.array([-2, 0.4, 7])
-&gt;&gt;&gt; is_var = x.is_variable(True)
-&gt;&gt;&gt; print(is_var)</p>
-<blockquote>
-<div><p>False</p>
-</div></blockquote>
+<p>with <code class="code docutils literal notranslate"><span class="pre">ivy.Array</span></code> input:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_var</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">is_variable</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">is_var</span><span class="p">)</span>
+<span class="go">    False</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></p>
