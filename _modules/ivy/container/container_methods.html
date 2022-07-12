@@ -2173,6 +2173,34 @@
     <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ivy.Container instance method variant of ivy.is_variable.</span>
+<span class="sd">    This method simply wraps the function, and so the docstring for</span>
+<span class="sd">    ivy.is_variable also applies to this method with minimal changes</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    with :code:`ivy.container` input:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([2, -1, 0]), b=ivy.array([0., -0.4, 8]))</span>
+<span class="sd">    &gt;&gt;&gt; is_var = ivy.Container.static_is_variable(x)</span>
+<span class="sd">    &gt;&gt;&gt; print(is_var)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: false,</span>
+<span class="sd">        b: false</span>
+<span class="sd">    }</span>
+
+<span class="sd">    with multiple :code:`ivy.Container` inputs:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([2, -1, 0]), b=ivy.array([0., -0.4, 8]))</span>
+<span class="sd">    &gt;&gt;&gt; exclusive = ivy.Container(a=False, b=True)</span>
+<span class="sd">    &gt;&gt;&gt; is_var = ivy.Container.static_is_variable(x, exclusive=exclusive)</span>
+<span class="sd">    &gt;&gt;&gt; print(is_var)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: false,</span>
+<span class="sd">        b: false</span>
+<span class="sd">    }</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span></div>
 
 
@@ -2184,6 +2212,34 @@
     <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ivy.Container instance method variant of ivy.is_variable.</span>
+<span class="sd">    This method simply wraps the function, and so the docstring for</span>
+<span class="sd">    ivy.is_variable also applies to this method with minimal changes</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    with :code:`ivy.Container` input:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([2, -1, 0]), b=ivy.array([0., -0.4, 8]))</span>
+<span class="sd">    &gt;&gt;&gt; is_var = x.is_variable(exclusive=True)</span>
+<span class="sd">    &gt;&gt;&gt; print(is_var)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: false,</span>
+<span class="sd">        b: false</span>
+<span class="sd">    }</span>
+
+<span class="sd">    with multiple :code:`ivy.Container` inputs:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([2, -1, 0]), b=ivy.array([0., -0.4, 8]))</span>
+<span class="sd">    &gt;&gt;&gt; exclusive = ivy.Container(a=True, b=True)</span>
+<span class="sd">    &gt;&gt;&gt; is_var = x.is_variable(exclusive=exclusive)</span>
+<span class="sd">    &gt;&gt;&gt; print(is_var)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: false,</span>
+<span class="sd">        b: false</span>
+<span class="sd">    }</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span></div>
 
 
