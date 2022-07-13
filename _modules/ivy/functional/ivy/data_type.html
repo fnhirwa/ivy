@@ -964,32 +964,39 @@
 <span class="sd">    &gt;&gt;&gt; print(ivy.default_dtype_stack)</span>
 <span class="sd">        [&#39;float64&#39;]</span>
 
+<span class="sd">    &gt;&gt;&gt; ivy.unset_default_dtype()</span>
 <span class="sd">    &gt;&gt;&gt; ivy.set_default_dtype(ivy.bool)</span>
 <span class="sd">    &gt;&gt;&gt; print(ivy.default_dtype_stack)</span>
 <span class="sd">        [&#39;bool&#39;]</span>
 
+<span class="sd">    &gt;&gt;&gt; ivy.unset_default_dtype()</span>
 <span class="sd">    &gt;&gt;&gt; ivy.set_default_dtype(ivy.int32)</span>
 <span class="sd">    &gt;&gt;&gt; print(ivy.default_dtype_stack)</span>
 <span class="sd">        [&#39;int32&#39;]</span>
 
+<span class="sd">    &gt;&gt;&gt; ivy.unset_default_dtype()</span>
 <span class="sd">    &gt;&gt;&gt; ivy.set_default_dtype(&#39;uint8&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; print(ivy.default_dtype_stack)</span>
 <span class="sd">        [&#39;uint8&#39;]</span>
 
 <span class="sd">    With :code:`ivy.NativeDtype` input:</span>
 
+<span class="sd">    &gt;&gt;&gt; ivy.unset_default_dtype()</span>
 <span class="sd">    &gt;&gt;&gt; ivy.set_default_dtype(ivy.native_int32)</span>
 <span class="sd">    &gt;&gt;&gt; print(ivy.default_dtype_stack)</span>
 <span class="sd">        [&#39;int32&#39;]</span>
 
+<span class="sd">    &gt;&gt;&gt; ivy.unset_default_dtype()</span>
 <span class="sd">    &gt;&gt;&gt; ivy.set_default_dtype(&#39;native_bool&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; print(ivy.default_dtype_stack)</span>
 <span class="sd">        [&#39;native_bool&#39;]</span>
 
+<span class="sd">    &gt;&gt;&gt; ivy.unset_default_dtype()</span>
 <span class="sd">    &gt;&gt;&gt; ivy.set_default_dtype(ivy.native_uint64)</span>
 <span class="sd">    &gt;&gt;&gt; print(ivy.default_dtype_stack)</span>
 <span class="sd">        [&#39;uint64&#39;]</span>
 
+<span class="sd">    &gt;&gt;&gt; ivy.unset_default_dtype()</span>
 <span class="sd">    &gt;&gt;&gt; ivy.set_default_dtype(&#39;native_float64&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; print(ivy.default_dtype_stack)</span>
 <span class="sd">        [&#39;native_float64&#39;]</span>
