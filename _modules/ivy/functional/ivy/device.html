@@ -546,10 +546,6 @@
 <span class="sd">    &gt;&gt;&gt; x = ivy.total_mem_on_dev(&quot;cpu&quot;)</span>
 <span class="sd">    &gt;&gt;&gt; print(x)</span>
 <span class="sd">    7.283843072</span>
-
-<span class="sd">    &gt;&gt;&gt; x = ivy.total_mem_on_dev(&quot;gpu:0&quot;)</span>
-<span class="sd">    &gt;&gt;&gt; print(x)</span>
-<span class="sd">    7.283843072</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="s2">&quot;gpu&quot;</span> <span class="ow">in</span> <span class="n">device</span><span class="p">:</span>
         <span class="n">handle</span> <span class="o">=</span> <span class="n">_get_nvml_gpu_handle</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
