@@ -2,6 +2,12 @@ log_softmax
 ===========
 
 .. autofunction:: ivy.functional.ivy.activations.log_softmax
+
+.. autofunction:: ivy.array.array_methods.log_softmax
+
+.. autofunction:: ivy.container.container_methods.log_softmax
+
+.. autofunction:: ivy.container.container_methods.static_log_softmax
 |
 | **Supported Frameworks:**
 
@@ -21,3 +27,15 @@ log_softmax
 
 .. |numpy_logo| image:: ../../../logos/supported/numpy_logo.png
    :target: https://numpy.org
+
+
+.. toctree::
+   :hidden:
+   :maxdepth: -1
+   :caption: log_softmax
+
+   log_softmax/log_softmax_functional.rst
+   log_softmax/log_softmax_array.rst
+   log_softmax/log_softmax_container.rst
+   log_softmax/static_log_softmax_container.rst
+
