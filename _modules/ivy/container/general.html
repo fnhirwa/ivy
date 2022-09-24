@@ -990,8 +990,7 @@
 <span class="sd">        Increment by a value</span>
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0.5, -5., 30.]), \</span>
 <span class="sd">                              b=ivy.array([0., -25., 50.]))</span>
-<span class="sd">        &gt;&gt;&gt; val = ivy.array(1.5)</span>
-<span class="sd">        &gt;&gt;&gt; y = ivy.inplace_increment(x, val)</span>
+<span class="sd">        &gt;&gt;&gt; y = ivy.inplace_increment(x, 1.5)</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        {</span>
 <span class="sd">            a: ivy.array([2., -3.5, 31.5]),</span>
@@ -1071,8 +1070,7 @@
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([-6.7, 2.4, -8.5]),\</span>
 <span class="sd">                               b=ivy.array([1.5, -0.3, 0]),\</span>
 <span class="sd">                               c=ivy.array([-4.7, -5.4, 7.5]))</span>
-<span class="sd">        &gt;&gt;&gt; val = ivy.array(2.)</span>
-<span class="sd">        &gt;&gt;&gt; y = x.inplace_increment(val)</span>
+<span class="sd">        &gt;&gt;&gt; y = x.inplace_increment(2)</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        {</span>
 <span class="sd">            a: ivy.array([-4.7, 4.4, -6.5]),</span>
@@ -1908,7 +1906,7 @@
 <span class="sd">        &gt;&gt;&gt; shape = ivy.Container(a=ivy.array([10]),\</span>
 <span class="sd">                                b = ivy.array([10]))</span>
 <span class="sd">        &gt;&gt;&gt; z = ivy.Container.static_scatter_nd(indices, updates, shape=shape)</span>
-<span class="sd">        &gt;&gt;&gt; z</span>
+<span class="sd">        &gt;&gt;&gt; print(z)</span>
 <span class="sd">        {</span>
 <span class="sd">            a: ivy.array([0, 0, 0, 0, 0, 50, 60, 70, 0, 0]),</span>
 <span class="sd">            b: ivy.array([0, 0, 20, 30, 40, 0, 0, 0, 0, 0])</span>
@@ -1923,7 +1921,7 @@
 <span class="sd">                                b = ivy.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))</span>
 <span class="sd">        &gt;&gt;&gt; ivy.Container.static_scatter_nd(indices, updates,\</span>
 <span class="sd">                                            reduction=&#39;replace&#39;, out = z)</span>
-<span class="sd">        &gt;&gt;&gt; z</span>
+<span class="sd">        &gt;&gt;&gt; print(z)</span>
 <span class="sd">        {</span>
 <span class="sd">            a: ivy.array([1, 2, 3, 4, 5, 50, 60, 70, 9, 10]),</span>
 <span class="sd">            b: ivy.array([1, 2, 20, 30, 40, 6, 7, 8, 9, 10])</span>
@@ -2017,7 +2015,7 @@
 <span class="sd">        &gt;&gt;&gt; z = ivy.Container(a=ivy.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),\</span>
 <span class="sd">                                b = ivy.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))</span>
 <span class="sd">        &gt;&gt;&gt; indices.scatter_nd(updates,reduction=&#39;replace&#39;, out = z)</span>
-<span class="sd">        &gt;&gt;&gt; z</span>
+<span class="sd">        &gt;&gt;&gt; print(z)</span>
 <span class="sd">        {</span>
 <span class="sd">            a: ivy.array([1, 2, 3, 4, 5, 50, 60, 70, 9, 10]),</span>
 <span class="sd">            b: ivy.array([1, 2, 20, 30, 40, 6, 7, 8, 9, 10])</span>
@@ -2334,7 +2332,7 @@
 <span class="sd">                        b=ivy.array([[4.96, 1.52, -10.67],\</span>
 <span class="sd">                                     [4.36, 13.96, 0.3]]))</span>
 <span class="sd">        &gt;&gt;&gt; reduced = ivy.Container.static_einops_reduce(x, &#39;a b -&gt; a&#39;, &#39;mean&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; reduced</span>
+<span class="sd">        &gt;&gt;&gt; print(reduced)</span>
 <span class="sd">        {</span>
 <span class="sd">            a: ivy.array([-2.29, 10.5]),</span>
 <span class="sd">            b: ivy.array([-1.4, 6.21])</span>
@@ -2415,7 +2413,7 @@
 <span class="sd">                                        [[1, 9, 6],\</span>
 <span class="sd">                                         [0, 2, 1]]]))</span>
 <span class="sd">        &gt;&gt;&gt; reduced = x.einops_reduce(&#39;a b c -&gt; a b&#39;, &#39;sum&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; reduced</span>
+<span class="sd">        &gt;&gt;&gt; print(reduced)</span>
 <span class="sd">        {</span>
 <span class="sd">            a: ivy.array([[12, 22],</span>
 <span class="sd">                        [15, 17]]),</span>
@@ -2480,7 +2478,7 @@
 <span class="sd">                            b=ivy.array([[1, 2], [4, 5]]))</span>
 <span class="sd">        &gt;&gt;&gt; repeated = ivy.Container.static_einops_repeat(\</span>
 <span class="sd">            x, &#39;h w -&gt; (tile h) w&#39;, tile=2)</span>
-<span class="sd">        &gt;&gt;&gt; repeated</span>
+<span class="sd">        &gt;&gt;&gt; print(repeated)</span>
 <span class="sd">        {</span>
 <span class="sd">            a: ivy.array([[30, 40],</span>
 <span class="sd">                        [50, 75],</span>
@@ -2770,8 +2768,8 @@
 <span class="sd">        &gt;&gt;&gt; y = ivy.Container.static_to_numpy(x)</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        {</span>
-<span class="sd">            a: array([1, 0, 1, 1]),</span>
-<span class="sd">            b: array([1, -1, 0, 0])</span>
+<span class="sd">            a: array([1, 0, 1, 1], dtype=int32),</span>
+<span class="sd">            b: array([1, -1, 0, 0], dtype=int32)</span>
 <span class="sd">        }</span>
 
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1., 0., 0., 1.]),\</span>
@@ -2780,7 +2778,7 @@
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        {</span>
 <span class="sd">            a: array([1., 0., 0., 1.], dtype=float32),</span>
-<span class="sd">            b: array([1, 1, -1, 0])</span>
+<span class="sd">            b: array([1, 1, -1, 0], dtype=int32)</span>
 <span class="sd">        }</span>
 
 <span class="sd">        Examples</span>
@@ -2852,10 +2850,10 @@
 <span class="sd">        {</span>
 <span class="sd">            a: array([[-1, 0, 1],</span>
 <span class="sd">                      [-1, 0, 1],</span>
-<span class="sd">                      [1, 0, -1]]),</span>
+<span class="sd">                      [1, 0, -1]], dtype=int32),</span>
 <span class="sd">            b: array([[-1, 0, 0],</span>
 <span class="sd">                      [1, 0, 1],</span>
-<span class="sd">                      [1, 1, 1]])</span>
+<span class="sd">                      [1, 1, 1]], dtype=int32)</span>
 <span class="sd">        }</span>
 
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.native_array([[-1, 0, 1], [-1, 0, 1], [1, 0, -1]]),\</span>
@@ -2865,10 +2863,10 @@
 <span class="sd">        {</span>
 <span class="sd">            a: array([[-1, 0, 1],</span>
 <span class="sd">                      [-1, 0, 1],</span>
-<span class="sd">                      [1, 0, -1]]),</span>
+<span class="sd">                      [1, 0, -1]], dtype=int32),</span>
 <span class="sd">            b: array([[-1, 0, 0],</span>
 <span class="sd">                      [1, 0, 1],</span>
-<span class="sd">                      [1, 1, 1]])</span>
+<span class="sd">                      [1, 1, 1]], dtype=int32)</span>
 <span class="sd">        }</span>
 
 <span class="sd">        Examples</span>
@@ -3719,7 +3717,7 @@
 <span class="sd">        With `ivy.Container` input and backend set as &#39;numpy&#39;:</span>
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a = ivy.array(1.0), b=ivy.array(2))</span>
 <span class="sd">        &gt;&gt;&gt; ret = ivy.Container.static_supports_inplace_updates(x)</span>
-<span class="sd">        &gt;&gt;&gt; ret</span>
+<span class="sd">        &gt;&gt;&gt; print(ret)</span>
 <span class="sd">        {</span>
 <span class="sd">            a: true,</span>
 <span class="sd">            b: true</span>
@@ -3729,7 +3727,7 @@
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.variable(ivy.array([2.0, 0.0])),\</span>
 <span class="sd">                              b=ivy.array([0., 5.5, -8]))</span>
 <span class="sd">        &gt;&gt;&gt; ret = ivy.Container.static_supports_inplace_updates(x)</span>
-<span class="sd">        &gt;&gt;&gt; ret</span>
+<span class="sd">        &gt;&gt;&gt; print(ret)</span>
 <span class="sd">        {</span>
 <span class="sd">            a: true,</span>
 <span class="sd">            b: false</span>
@@ -3787,7 +3785,7 @@
 <span class="sd">        With an `ivy.Container` instance and backend set as &#39;numpy&#39;:</span>
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a = ivy.array(1.0), b=ivy.array(2))</span>
 <span class="sd">        &gt;&gt;&gt; ret = x.supports_inplace_updates()</span>
-<span class="sd">        &gt;&gt;&gt; ret</span>
+<span class="sd">        &gt;&gt;&gt; print(ret)</span>
 <span class="sd">        {</span>
 <span class="sd">            a: true,</span>
 <span class="sd">            b: true</span>
@@ -3797,7 +3795,7 @@
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.variable(ivy.array([2.0, 0.0])),\</span>
 <span class="sd">                              b=ivy.array([0., 5.5, -8]))</span>
 <span class="sd">        &gt;&gt;&gt; ret = x.supports_inplace_updates()</span>
-<span class="sd">        &gt;&gt;&gt; ret</span>
+<span class="sd">        &gt;&gt;&gt; print(ret)</span>
 <span class="sd">        {</span>
 <span class="sd">            a: true,</span>
 <span class="sd">            b: true</span>

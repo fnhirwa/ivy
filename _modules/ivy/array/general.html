@@ -367,7 +367,7 @@
 <span class="sd">        &gt;&gt;&gt; indices = ivy.array([[4], [3], [1], [7]])</span>
 <span class="sd">        &gt;&gt;&gt; updates = ivy.array([9, 10, 11, 12])</span>
 <span class="sd">        &gt;&gt;&gt; scatter = indices.scatter_nd(updates, reduction=&#39;replace&#39;, out=arr)</span>
-<span class="sd">        &gt;&gt;&gt; scatter</span>
+<span class="sd">        &gt;&gt;&gt; print(scatter)</span>
 <span class="sd">        ivy.array([ 1, 11,  3, 10,  9,  6,  7, 12,  9, 10])</span>
 
 <span class="sd">        scatter values into an empty array</span>
@@ -375,7 +375,7 @@
 <span class="sd">        &gt;&gt;&gt; indices = ivy.array([[1,4], [0,3], [1,1], [0,2]])</span>
 <span class="sd">        &gt;&gt;&gt; updates = ivy.array([25, 40, 21, 22])</span>
 <span class="sd">        &gt;&gt;&gt; scatter = indices.scatter_nd(updates, shape=shape)</span>
-<span class="sd">        &gt;&gt;&gt; scatter</span>
+<span class="sd">        &gt;&gt;&gt; print(scatter)</span>
 <span class="sd">        ivy.array([[ 0,  0, 22, 40,  0],</span>
 <span class="sd">                    [ 0, 21,  0,  0, 25]])</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -495,8 +495,8 @@
 <span class="sd">                       [11, 2]],</span>
 <span class="sd">                      [[3, 5],</span>
 <span class="sd">                       [9, 7]]])</span>
-<span class="sd">        &gt;&gt;&gt; y = x.einops_reduce(&#39;a b c -&gt; b c&#39;, &#39;max&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; y</span>
+<span class="sd">        &gt;&gt;&gt; reduced = x.einops_reduce(&#39;a b c -&gt; b c&#39;, &#39;max&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; print(reduced)</span>
 <span class="sd">        ivy.array([[ 5,  5],</span>
 <span class="sd">                   [11,  7]])</span>
 
@@ -504,8 +504,8 @@
 <span class="sd">                        [11, 2, 9]],</span>
 <span class="sd">                       [[3, 5, 7],</span>
 <span class="sd">                        [9, 7, 1]]])</span>
-<span class="sd">        &gt;&gt;&gt; y = x.einops_reduce(&#39;a b c -&gt; a () c&#39;, &#39;min&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; y</span>
+<span class="sd">        &gt;&gt;&gt; reduced = x.einops_reduce(&#39;a b c -&gt; a () c&#39;, &#39;min&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; print(reduced)</span>
 <span class="sd">        ivy.array([[[5, 2, 3]],</span>
 <span class="sd">                   [[3, 5, 1]]])</span>
 
@@ -547,16 +547,16 @@
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; x = ivy.array([5,4])</span>
-<span class="sd">        &gt;&gt;&gt; y = x.einops_repeat(&#39;a -&gt; a c&#39;, c=3)</span>
-<span class="sd">        &gt;&gt;&gt; y</span>
+<span class="sd">        &gt;&gt;&gt; repeated = x.einops_repeat(&#39;a -&gt; a c&#39;, c=3)</span>
+<span class="sd">        &gt;&gt;&gt; print(repeated)</span>
 <span class="sd">        ivy.array([[5, 4],</span>
 <span class="sd">                   [5, 4],</span>
 <span class="sd">                  [5, 4]])</span>
 
 <span class="sd">        &gt;&gt;&gt; x = ivy.array([[5,4],</span>
 <span class="sd">                    [2, 3]])</span>
-<span class="sd">        &gt;&gt;&gt; y = x.einops_repeat(&#39;a b -&gt;  a b c&#39;, c=3)</span>
-<span class="sd">        &gt;&gt;&gt; y</span>
+<span class="sd">        &gt;&gt;&gt; repeated = x.einops_repeat(&#39;a b -&gt;  a b c&#39;, c=3)</span>
+<span class="sd">        &gt;&gt;&gt; print(repeated)</span>
 <span class="sd">        ivy.array([[[5, 5, 5],</span>
 <span class="sd">                    [4, 4, 4]],</span>
 <span class="sd">                   [[2, 2, 2],</span>
@@ -633,7 +633,7 @@
 <span class="sd">        With `ivy.Array` input and backend set as &quot;tensorflow&quot;:</span>
 <span class="sd">        &gt;&gt;&gt; x = ivy.array([1., 4.2, 2.2])</span>
 <span class="sd">        &gt;&gt;&gt; ret = x.supports_inplace()</span>
-<span class="sd">        &gt;&gt;&gt; ret</span>
+<span class="sd">        &gt;&gt;&gt; print(ret)</span>
 <span class="sd">        False</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">supports_inplace_updates</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
@@ -1103,15 +1103,13 @@
 <span class="sd">        With :code:`ivy.Array` instance methods:</span>
 
 <span class="sd">        &gt;&gt;&gt; x = ivy.array([5.7, 4.3, 2.5, 1.9])</span>
-<span class="sd">        &gt;&gt;&gt; val = ivy.array(1.)</span>
-<span class="sd">        &gt;&gt;&gt; y = x.inplace_increment(val)</span>
-<span class="sd">        &gt;&gt;&gt; y</span>
+<span class="sd">        &gt;&gt;&gt; y = x.inplace_increment(1)</span>
+<span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        ivy.array([6.7, 5.3, 3.5, 2.9])</span>
 
 <span class="sd">        &gt;&gt;&gt; x = ivy.asarray([4., 5., 6.])</span>
-<span class="sd">        &gt;&gt;&gt; val = ivy.array(2.5)</span>
-<span class="sd">        &gt;&gt;&gt; y = x.inplace_increment()</span>
-<span class="sd">        &gt;&gt;&gt; y</span>
+<span class="sd">        &gt;&gt;&gt; y = x.inplace_increment(2.5)</span>
+<span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        ivy.array([6.5, 7.5, 8.5])</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>

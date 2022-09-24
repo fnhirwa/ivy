@@ -250,7 +250,7 @@ True if nodes of x support in-place operations. False otherwise.</p>
 <p>With <cite>ivy.Container</cite> input and backend set as ‘numpy’:
 &gt;&gt;&gt; x = ivy.Container(a = ivy.array(1.0), b=ivy.array(2))
 &gt;&gt;&gt; ret = ivy.Container.static_supports_inplace_updates(x)
-&gt;&gt;&gt; ret
+&gt;&gt;&gt; print(ret)
 {</p>
 <blockquote>
 <div><p>a: true,
@@ -260,7 +260,7 @@ b: true</p>
 <p>With <cite>ivy.Container</cite> input and backend set as ‘tensorflow’:
 &gt;&gt;&gt; x = ivy.Container(a=ivy.variable(ivy.array([2.0, 0.0])),                          b=ivy.array([0., 5.5, -8]))
 &gt;&gt;&gt; ret = ivy.Container.static_supports_inplace_updates(x)
-&gt;&gt;&gt; ret
+&gt;&gt;&gt; print(ret)
 {</p>
 <blockquote>
 <div><p>a: true,
