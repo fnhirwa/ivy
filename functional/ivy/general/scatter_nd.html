@@ -301,14 +301,14 @@ or ‘replace’</p></li>
 &gt;&gt;&gt; indices = ivy.array([[4], [3], [1], [7]])
 &gt;&gt;&gt; updates = ivy.array([9, 10, 11, 12])
 &gt;&gt;&gt; scatter = indices.scatter_nd(updates, reduction=’replace’, out=arr)
-&gt;&gt;&gt; print(scatter)
+&gt;&gt;&gt; scatter
 ivy.array([ 1, 11,  3, 10,  9,  6,  7, 12,  9, 10])</p>
 <p>scatter values into an empty array
 &gt;&gt;&gt; shape = ivy.array([2, 5])
 &gt;&gt;&gt; indices = ivy.array([[1,4], [0,3], [1,1], [0,2]])
 &gt;&gt;&gt; updates = ivy.array([25, 40, 21, 22])
 &gt;&gt;&gt; scatter = indices.scatter_nd(updates, shape=shape)
-&gt;&gt;&gt; print(scatter)
+&gt;&gt;&gt; scatter
 ivy.array([[ 0,  0, 22, 40,  0],</p>
 <blockquote>
 <div><p>[ 0, 21,  0,  0, 25]])</p>
@@ -366,7 +366,7 @@ b: ivy.array([0, 30, 40, 0, 0, 20, 0, 0, 0, 0])</p>
 &gt;&gt;&gt; updates = ivy.Container(a=ivy.array([50, 60, 70]),                                b=ivy.array([20, 30, 40]))
 &gt;&gt;&gt; z = ivy.Container(a=ivy.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),                            b = ivy.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
 &gt;&gt;&gt; indices.scatter_nd(updates,reduction=’replace’, out = z)
-&gt;&gt;&gt; print(z)
+&gt;&gt;&gt; z
 {</p>
 <blockquote>
 <div><p>a: ivy.array([1, 2, 3, 4, 5, 50, 60, 70, 9, 10]),
@@ -413,7 +413,7 @@ that the inputs broadcast to.</p></li>
 &gt;&gt;&gt; updates = ivy.Container(a=ivy.array([50, 60, 70]),                                b=ivy.array([20, 30, 40]))
 &gt;&gt;&gt; shape = ivy.Container(a=ivy.array([10]),                            b = ivy.array([10]))
 &gt;&gt;&gt; z = ivy.Container.static_scatter_nd(indices, updates, shape=shape)
-&gt;&gt;&gt; print(z)
+&gt;&gt;&gt; z
 {</p>
 <blockquote>
 <div><p>a: ivy.array([0, 0, 0, 0, 0, 50, 60, 70, 0, 0]),
@@ -425,7 +425,7 @@ b: ivy.array([0, 0, 20, 30, 40, 0, 0, 0, 0, 0])</p>
 &gt;&gt;&gt; updates = ivy.Container(a=ivy.array([50, 60, 70]),                    b=ivy.array([20, 30, 40]))
 &gt;&gt;&gt; z = ivy.Container(a=ivy.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),                            b = ivy.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
 &gt;&gt;&gt; ivy.Container.static_scatter_nd(indices, updates,                                        reduction=’replace’, out = z)
-&gt;&gt;&gt; print(z)
+&gt;&gt;&gt; z
 {</p>
 <blockquote>
 <div><p>a: ivy.array([1, 2, 3, 4, 5, 50, 60, 70, 9, 10]),

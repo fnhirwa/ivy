@@ -297,14 +297,16 @@ ivy.inplace_increment also applies to this method with minimal changes.</p>
 <p class="rubric">Examples</p>
 <p>With <code class="code docutils literal notranslate"><span class="pre">ivy.Array</span></code> instance methods:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">5.7</span><span class="p">,</span> <span class="mf">4.3</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">inplace_increment</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">val</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mf">1.</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">inplace_increment</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span>
 <span class="go">ivy.array([6.7, 5.3, 3.5, 2.9])</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">inplace_increment</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">val</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">inplace_increment</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span>
 <span class="go">ivy.array([6.5, 7.5, 8.5])</span>
 </pre></div>
 </div>
@@ -339,7 +341,8 @@ Default is False.</p></li>
 <p class="rubric">Examples</p>
 <p>Using <code class="code docutils literal notranslate"><span class="pre">ivy.Container</span></code> instance method:
 &gt;&gt;&gt; x = ivy.Container(a=ivy.array([-6.7, 2.4, -8.5]),                           b=ivy.array([1.5, -0.3, 0]),                           c=ivy.array([-4.7, -5.4, 7.5]))
-&gt;&gt;&gt; y = x.inplace_increment(2)
+&gt;&gt;&gt; val = ivy.array(2.)
+&gt;&gt;&gt; y = x.inplace_increment(val)
 &gt;&gt;&gt; print(y)
 {</p>
 <blockquote>
@@ -379,7 +382,8 @@ Default is False.</p></li>
 <p class="rubric">Examples</p>
 <p>Increment by a value
 &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0.5, -5., 30.]),                           b=ivy.array([0., -25., 50.]))
-&gt;&gt;&gt; y = ivy.inplace_increment(x, 1.5)
+&gt;&gt;&gt; val = ivy.array(1.5)
+&gt;&gt;&gt; y = ivy.inplace_increment(x, val)
 &gt;&gt;&gt; print(y)
 {</p>
 <blockquote>

@@ -700,7 +700,8 @@ Default is False.</p></li>
 <p class="rubric">Examples</p>
 <p>Using <code class="code docutils literal notranslate"><span class="pre">ivy.Container</span></code> instance method:
 &gt;&gt;&gt; x = ivy.Container(a=ivy.array([-6.7, 2.4, -8.5]),                               b=ivy.array([1.5, -0.3, 0]),                               c=ivy.array([-4.7, -5.4, 7.5]))
-&gt;&gt;&gt; y = x.inplace_increment(2)
+&gt;&gt;&gt; val = ivy.array(2.)
+&gt;&gt;&gt; y = x.inplace_increment(val)
 &gt;&gt;&gt; print(y)
 {</p>
 <blockquote>
@@ -948,7 +949,7 @@ b: ivy.array([0, 30, 40, 0, 0, 20, 0, 0, 0, 0])</p>
 &gt;&gt;&gt; updates = ivy.Container(a=ivy.array([50, 60, 70]),                                    b=ivy.array([20, 30, 40]))
 &gt;&gt;&gt; z = ivy.Container(a=ivy.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),                                b = ivy.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
 &gt;&gt;&gt; indices.scatter_nd(updates,reduction=’replace’, out = z)
-&gt;&gt;&gt; print(z)
+&gt;&gt;&gt; z
 {</p>
 <blockquote>
 <div><p>a: ivy.array([1, 2, 3, 4, 5, 50, 60, 70, 9, 10]),
@@ -1579,7 +1580,8 @@ Default is False.</p></li>
 <p class="rubric">Examples</p>
 <p>Increment by a value
 &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0.5, -5., 30.]),                               b=ivy.array([0., -25., 50.]))
-&gt;&gt;&gt; y = ivy.inplace_increment(x, 1.5)
+&gt;&gt;&gt; val = ivy.array(1.5)
+&gt;&gt;&gt; y = ivy.inplace_increment(x, val)
 &gt;&gt;&gt; print(y)
 {</p>
 <blockquote>
@@ -1833,7 +1835,7 @@ that the inputs broadcast to.</p></li>
 &gt;&gt;&gt; updates = ivy.Container(a=ivy.array([50, 60, 70]),                                    b=ivy.array([20, 30, 40]))
 &gt;&gt;&gt; shape = ivy.Container(a=ivy.array([10]),                                b = ivy.array([10]))
 &gt;&gt;&gt; z = ivy.Container.static_scatter_nd(indices, updates, shape=shape)
-&gt;&gt;&gt; print(z)
+&gt;&gt;&gt; z
 {</p>
 <blockquote>
 <div><p>a: ivy.array([0, 0, 0, 0, 0, 50, 60, 70, 0, 0]),
@@ -1845,7 +1847,7 @@ b: ivy.array([0, 0, 20, 30, 40, 0, 0, 0, 0, 0])</p>
 &gt;&gt;&gt; updates = ivy.Container(a=ivy.array([50, 60, 70]),                        b=ivy.array([20, 30, 40]))
 &gt;&gt;&gt; z = ivy.Container(a=ivy.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),                                b = ivy.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
 &gt;&gt;&gt; ivy.Container.static_scatter_nd(indices, updates,                                            reduction=’replace’, out = z)
-&gt;&gt;&gt; print(z)
+&gt;&gt;&gt; z
 {</p>
 <blockquote>
 <div><p>a: ivy.array([1, 2, 3, 4, 5, 50, 60, 70, 9, 10]),

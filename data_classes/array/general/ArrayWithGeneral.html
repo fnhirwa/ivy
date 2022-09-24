@@ -687,14 +687,16 @@ ivy.inplace_increment also applies to this method with minimal changes.</p>
 <p class="rubric">Examples</p>
 <p>With <code class="code docutils literal notranslate"><span class="pre">ivy.Array</span></code> instance methods:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">5.7</span><span class="p">,</span> <span class="mf">4.3</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">inplace_increment</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">val</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mf">1.</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">inplace_increment</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span>
 <span class="go">ivy.array([6.7, 5.3, 3.5, 2.9])</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">inplace_increment</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">val</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">inplace_increment</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span>
 <span class="go">ivy.array([6.5, 7.5, 8.5])</span>
 </pre></div>
 </div>
@@ -870,14 +872,14 @@ or ‘replace’</p></li>
 &gt;&gt;&gt; indices = ivy.array([[4], [3], [1], [7]])
 &gt;&gt;&gt; updates = ivy.array([9, 10, 11, 12])
 &gt;&gt;&gt; scatter = indices.scatter_nd(updates, reduction=’replace’, out=arr)
-&gt;&gt;&gt; print(scatter)
+&gt;&gt;&gt; scatter
 ivy.array([ 1, 11,  3, 10,  9,  6,  7, 12,  9, 10])</p>
 <p>scatter values into an empty array
 &gt;&gt;&gt; shape = ivy.array([2, 5])
 &gt;&gt;&gt; indices = ivy.array([[1,4], [0,3], [1,1], [0,2]])
 &gt;&gt;&gt; updates = ivy.array([25, 40, 21, 22])
 &gt;&gt;&gt; scatter = indices.scatter_nd(updates, shape=shape)
-&gt;&gt;&gt; print(scatter)
+&gt;&gt;&gt; scatter
 ivy.array([[ 0,  0, 22, 40,  0],</p>
 <blockquote>
 <div><p>[ 0, 21,  0,  0, 25]])</p>

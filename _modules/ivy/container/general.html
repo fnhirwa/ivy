@@ -990,7 +990,8 @@
 <span class="sd">        Increment by a value</span>
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0.5, -5., 30.]), \</span>
 <span class="sd">                              b=ivy.array([0., -25., 50.]))</span>
-<span class="sd">        &gt;&gt;&gt; y = ivy.inplace_increment(x, 1.5)</span>
+<span class="sd">        &gt;&gt;&gt; val = ivy.array(1.5)</span>
+<span class="sd">        &gt;&gt;&gt; y = ivy.inplace_increment(x, val)</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        {</span>
 <span class="sd">            a: ivy.array([2., -3.5, 31.5]),</span>
@@ -1070,7 +1071,8 @@
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([-6.7, 2.4, -8.5]),\</span>
 <span class="sd">                               b=ivy.array([1.5, -0.3, 0]),\</span>
 <span class="sd">                               c=ivy.array([-4.7, -5.4, 7.5]))</span>
-<span class="sd">        &gt;&gt;&gt; y = x.inplace_increment(2)</span>
+<span class="sd">        &gt;&gt;&gt; val = ivy.array(2.)</span>
+<span class="sd">        &gt;&gt;&gt; y = x.inplace_increment(val)</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        {</span>
 <span class="sd">            a: ivy.array([-4.7, 4.4, -6.5]),</span>
@@ -1906,7 +1908,7 @@
 <span class="sd">        &gt;&gt;&gt; shape = ivy.Container(a=ivy.array([10]),\</span>
 <span class="sd">                                b = ivy.array([10]))</span>
 <span class="sd">        &gt;&gt;&gt; z = ivy.Container.static_scatter_nd(indices, updates, shape=shape)</span>
-<span class="sd">        &gt;&gt;&gt; print(z)</span>
+<span class="sd">        &gt;&gt;&gt; z</span>
 <span class="sd">        {</span>
 <span class="sd">            a: ivy.array([0, 0, 0, 0, 0, 50, 60, 70, 0, 0]),</span>
 <span class="sd">            b: ivy.array([0, 0, 20, 30, 40, 0, 0, 0, 0, 0])</span>
@@ -1921,7 +1923,7 @@
 <span class="sd">                                b = ivy.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))</span>
 <span class="sd">        &gt;&gt;&gt; ivy.Container.static_scatter_nd(indices, updates,\</span>
 <span class="sd">                                            reduction=&#39;replace&#39;, out = z)</span>
-<span class="sd">        &gt;&gt;&gt; print(z)</span>
+<span class="sd">        &gt;&gt;&gt; z</span>
 <span class="sd">        {</span>
 <span class="sd">            a: ivy.array([1, 2, 3, 4, 5, 50, 60, 70, 9, 10]),</span>
 <span class="sd">            b: ivy.array([1, 2, 20, 30, 40, 6, 7, 8, 9, 10])</span>
@@ -2015,7 +2017,7 @@
 <span class="sd">        &gt;&gt;&gt; z = ivy.Container(a=ivy.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),\</span>
 <span class="sd">                                b = ivy.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))</span>
 <span class="sd">        &gt;&gt;&gt; indices.scatter_nd(updates,reduction=&#39;replace&#39;, out = z)</span>
-<span class="sd">        &gt;&gt;&gt; print(z)</span>
+<span class="sd">        &gt;&gt;&gt; z</span>
 <span class="sd">        {</span>
 <span class="sd">            a: ivy.array([1, 2, 3, 4, 5, 50, 60, 70, 9, 10]),</span>
 <span class="sd">            b: ivy.array([1, 2, 20, 30, 40, 6, 7, 8, 9, 10])</span>

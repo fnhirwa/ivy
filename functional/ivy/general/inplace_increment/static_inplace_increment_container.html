@@ -242,7 +242,8 @@ Default is False.</p></li>
 <p class="rubric">Examples</p>
 <p>Increment by a value
 &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0.5, -5., 30.]),                           b=ivy.array([0., -25., 50.]))
-&gt;&gt;&gt; y = ivy.inplace_increment(x, 1.5)
+&gt;&gt;&gt; val = ivy.array(1.5)
+&gt;&gt;&gt; y = ivy.inplace_increment(x, val)
 &gt;&gt;&gt; print(y)
 {</p>
 <blockquote>
