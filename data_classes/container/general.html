@@ -79,6 +79,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Data Classes</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../array.html">Array</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../container.html">Container</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="activations.html">Activations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="base.html">Base</a></li>
@@ -107,18 +108,17 @@
 <li class="toctree-l2"><a class="reference internal" href="wrapping.html">Wrapping</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../array.html">Array</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Framework Classes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../stateful/initializers.html">Initializers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../stateful/converters.html">Converters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../stateful/optimizers.html">Optimizers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../stateful/module.html">Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../stateful/layers.html">Layers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../stateful/norms.html">Norms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../stateful/activations.html">Activations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../stateful/sequential.html">Sequential</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stateful/activations.html">Activations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stateful/module.html">Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stateful/optimizers.html">Optimizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stateful/norms.html">Norms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stateful/layers.html">Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stateful/initializers.html">Initializers</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Docs</span></p>
 <ul>
@@ -410,7 +410,7 @@ shape that the inputs broadcast to.</p></li>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>                                           <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">]],</span>                                          <span class="p">[[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>                                           <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]]),</span>                            <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span><span class="mi">9</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span>                                          <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]],</span>                                        <span class="p">[[</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>                                         <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">]],</span>                                        <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>                                         <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]]))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">reduced</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">einops_reduce</span><span class="p">(</span><span class="s1">&#39;a b c -&gt; a b&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">reduced</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reduced</span>
 <span class="go">{</span>
 <span class="go">    a: ivy.array([[12, 22],</span>
 <span class="go">                [15, 17]]),</span>
@@ -699,7 +699,8 @@ Default is False.</p></li>
 <p class="rubric">Examples</p>
 <p>Using <code class="code docutils literal notranslate"><span class="pre">ivy.Container</span></code> instance method:
 &gt;&gt;&gt; x = ivy.Container(a=ivy.array([-6.7, 2.4, -8.5]),                               b=ivy.array([1.5, -0.3, 0]),                               c=ivy.array([-4.7, -5.4, 7.5]))
-&gt;&gt;&gt; y = x.inplace_increment(2)
+&gt;&gt;&gt; val = ivy.array(2.)
+&gt;&gt;&gt; y = x.inplace_increment(val)
 &gt;&gt;&gt; print(y)
 {</p>
 <blockquote>
@@ -947,7 +948,7 @@ b: ivy.array([0, 30, 40, 0, 0, 20, 0, 0, 0, 0])</p>
 &gt;&gt;&gt; updates = ivy.Container(a=ivy.array([50, 60, 70]),                                    b=ivy.array([20, 30, 40]))
 &gt;&gt;&gt; z = ivy.Container(a=ivy.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),                                b = ivy.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
 &gt;&gt;&gt; indices.scatter_nd(updates,reduction=’replace’, out = z)
-&gt;&gt;&gt; print(z)
+&gt;&gt;&gt; z
 {</p>
 <blockquote>
 <div><p>a: ivy.array([1, 2, 3, 4, 5, 50, 60, 70, 9, 10]),
@@ -1273,7 +1274,7 @@ is False.</p></li>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mf">4.47</span><span class="p">,</span> <span class="mf">0.93</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.34</span><span class="p">],</span>                                      <span class="p">[</span><span class="mf">3.66</span><span class="p">,</span> <span class="mf">24.29</span><span class="p">,</span> <span class="mf">3.64</span><span class="p">]]),</span>                        <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">4.96</span><span class="p">,</span> <span class="mf">1.52</span><span class="p">,</span> <span class="o">-</span><span class="mf">10.67</span><span class="p">],</span>                                     <span class="p">[</span><span class="mf">4.36</span><span class="p">,</span> <span class="mf">13.96</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]]))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">reduced</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="o">.</span><span class="n">static_einops_reduce</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;a b -&gt; a&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">reduced</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reduced</span>
 <span class="go">{</span>
 <span class="go">    a: ivy.array([-2.29, 10.5]),</span>
 <span class="go">    b: ivy.array([-1.4, 6.21])</span>
@@ -1310,7 +1311,7 @@ is False.</p></li>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">75</span><span class="p">]]),</span>                            <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">repeated</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="o">.</span><span class="n">static_einops_repeat</span><span class="p">(</span>            <span class="n">x</span><span class="p">,</span> <span class="s1">&#39;h w -&gt; (tile h) w&#39;</span><span class="p">,</span> <span class="n">tile</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">repeated</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">repeated</span>
 <span class="go">{</span>
 <span class="go">    a: ivy.array([[30, 40],</span>
 <span class="go">                [50, 75],</span>
@@ -1578,7 +1579,8 @@ Default is False.</p></li>
 <p class="rubric">Examples</p>
 <p>Increment by a value
 &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0.5, -5., 30.]),                               b=ivy.array([0., -25., 50.]))
-&gt;&gt;&gt; y = ivy.inplace_increment(x, 1.5)
+&gt;&gt;&gt; val = ivy.array(1.5)
+&gt;&gt;&gt; y = ivy.inplace_increment(x, val)
 &gt;&gt;&gt; print(y)
 {</p>
 <blockquote>
@@ -1832,7 +1834,7 @@ that the inputs broadcast to.</p></li>
 &gt;&gt;&gt; updates = ivy.Container(a=ivy.array([50, 60, 70]),                                    b=ivy.array([20, 30, 40]))
 &gt;&gt;&gt; shape = ivy.Container(a=ivy.array([10]),                                b = ivy.array([10]))
 &gt;&gt;&gt; z = ivy.Container.static_scatter_nd(indices, updates, shape=shape)
-&gt;&gt;&gt; print(z)
+&gt;&gt;&gt; z
 {</p>
 <blockquote>
 <div><p>a: ivy.array([0, 0, 0, 0, 0, 50, 60, 70, 0, 0]),
@@ -1844,7 +1846,7 @@ b: ivy.array([0, 0, 20, 30, 40, 0, 0, 0, 0, 0])</p>
 &gt;&gt;&gt; updates = ivy.Container(a=ivy.array([50, 60, 70]),                        b=ivy.array([20, 30, 40]))
 &gt;&gt;&gt; z = ivy.Container(a=ivy.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),                                b = ivy.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
 &gt;&gt;&gt; ivy.Container.static_scatter_nd(indices, updates,                                            reduction=’replace’, out = z)
-&gt;&gt;&gt; print(z)
+&gt;&gt;&gt; z
 {</p>
 <blockquote>
 <div><p>a: ivy.array([1, 2, 3, 4, 5, 50, 60, 70, 9, 10]),
@@ -2030,7 +2032,7 @@ True if nodes of x support in-place operations. False otherwise.</p>
 <p>With <cite>ivy.Container</cite> input and backend set as ‘numpy’:
 &gt;&gt;&gt; x = ivy.Container(a = ivy.array(1.0), b=ivy.array(2))
 &gt;&gt;&gt; ret = ivy.Container.static_supports_inplace_updates(x)
-&gt;&gt;&gt; print(ret)
+&gt;&gt;&gt; ret
 {</p>
 <blockquote>
 <div><p>a: true,
@@ -2040,7 +2042,7 @@ b: true</p>
 <p>With <cite>ivy.Container</cite> input and backend set as ‘tensorflow’:
 &gt;&gt;&gt; x = ivy.Container(a=ivy.variable(ivy.array([2.0, 0.0])),                              b=ivy.array([0., 5.5, -8]))
 &gt;&gt;&gt; ret = ivy.Container.static_supports_inplace_updates(x)
-&gt;&gt;&gt; print(ret)
+&gt;&gt;&gt; ret
 {</p>
 <blockquote>
 <div><p>a: true,
@@ -2116,8 +2118,8 @@ Default is False.</p></li>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="o">.</span><span class="n">static_to_numpy</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="go">{</span>
-<span class="go">    a: array([1, 0, 1, 1], dtype=int32),</span>
-<span class="go">    b: array([1, -1, 0, 0], dtype=int32)</span>
+<span class="go">    a: array([1, 0, 1, 1]),</span>
+<span class="go">    b: array([1, -1, 0, 0])</span>
 <span class="go">}</span>
 </pre></div>
 </div>
@@ -2126,7 +2128,7 @@ Default is False.</p></li>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="go">{</span>
 <span class="go">    a: array([1., 0., 0., 1.], dtype=float32),</span>
-<span class="go">    b: array([1, 1, -1, 0], dtype=int32)</span>
+<span class="go">    b: array([1, 1, -1, 0])</span>
 <span class="go">}</span>
 </pre></div>
 </div>
@@ -2309,7 +2311,7 @@ True if nodes of the Container support in-place operations. False otherwise.</p>
 <p>With an <cite>ivy.Container</cite> instance and backend set as ‘numpy’:
 &gt;&gt;&gt; x = ivy.Container(a = ivy.array(1.0), b=ivy.array(2))
 &gt;&gt;&gt; ret = x.supports_inplace_updates()
-&gt;&gt;&gt; print(ret)
+&gt;&gt;&gt; ret
 {</p>
 <blockquote>
 <div><p>a: true,
@@ -2319,7 +2321,7 @@ b: true</p>
 <p>With an <cite>ivy.Container</cite> instance and backend set as ‘tensorflow’:
 &gt;&gt;&gt; x = ivy.Container(a=ivy.variable(ivy.array([2.0, 0.0])),                              b=ivy.array([0., 5.5, -8]))
 &gt;&gt;&gt; ret = x.supports_inplace_updates()
-&gt;&gt;&gt; print(ret)
+&gt;&gt;&gt; ret
 {</p>
 <blockquote>
 <div><p>a: true,
@@ -2397,10 +2399,10 @@ Default is False.</p></li>
 <span class="go">{</span>
 <span class="go">    a: array([[-1, 0, 1],</span>
 <span class="go">              [-1, 0, 1],</span>
-<span class="go">              [1, 0, -1]], dtype=int32),</span>
+<span class="go">              [1, 0, -1]]),</span>
 <span class="go">    b: array([[-1, 0, 0],</span>
 <span class="go">              [1, 0, 1],</span>
-<span class="go">              [1, 1, 1]], dtype=int32)</span>
+<span class="go">              [1, 1, 1]])</span>
 <span class="go">}</span>
 </pre></div>
 </div>
@@ -2410,10 +2412,10 @@ Default is False.</p></li>
 <span class="go">{</span>
 <span class="go">    a: array([[-1, 0, 1],</span>
 <span class="go">              [-1, 0, 1],</span>
-<span class="go">              [1, 0, -1]], dtype=int32),</span>
+<span class="go">              [1, 0, -1]]),</span>
 <span class="go">    b: array([[-1, 0, 0],</span>
 <span class="go">              [1, 0, 1],</span>
-<span class="go">              [1, 1, 1]], dtype=int32)</span>
+<span class="go">              [1, 1, 1]])</span>
 <span class="go">}</span>
 </pre></div>
 </div>
