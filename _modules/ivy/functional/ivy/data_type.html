@@ -135,6 +135,9 @@
 <span class="kn">from</span> <span class="nn">numbers</span> <span class="kn">import</span> <span class="n">Number</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">jax.numpy</span> <span class="k">as</span> <span class="nn">jnp</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">torch</span>
 
 <span class="c1"># local</span>
 <span class="kn">import</span> <span class="nn">ivy</span>
@@ -150,6 +153,84 @@
 
 <span class="c1"># Helpers #</span>
 <span class="c1"># --------#</span>
+
+
+<span class="n">ivy_dtype_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;int8&quot;</span><span class="p">):</span> <span class="s2">&quot;int8&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;int16&quot;</span><span class="p">):</span> <span class="s2">&quot;int16&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;int32&quot;</span><span class="p">):</span> <span class="s2">&quot;int32&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;int64&quot;</span><span class="p">):</span> <span class="s2">&quot;int64&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;uint8&quot;</span><span class="p">):</span> <span class="s2">&quot;uint8&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;uint16&quot;</span><span class="p">):</span> <span class="s2">&quot;uint16&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;uint32&quot;</span><span class="p">):</span> <span class="s2">&quot;uint32&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;uint64&quot;</span><span class="p">):</span> <span class="s2">&quot;uint64&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;bfloat16&quot;</span><span class="p">):</span> <span class="s2">&quot;bfloat16&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;float16&quot;</span><span class="p">):</span> <span class="s2">&quot;float16&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;float32&quot;</span><span class="p">):</span> <span class="s2">&quot;float32&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;float64&quot;</span><span class="p">):</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;bool&quot;</span><span class="p">):</span> <span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">:</span> <span class="s2">&quot;int8&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">:</span> <span class="s2">&quot;int16&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">:</span> <span class="s2">&quot;int32&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">:</span> <span class="s2">&quot;int64&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">:</span> <span class="s2">&quot;uint8&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">:</span> <span class="s2">&quot;uint16&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">uint32</span><span class="p">:</span> <span class="s2">&quot;uint32&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">uint64</span><span class="p">:</span> <span class="s2">&quot;uint64&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">float16</span><span class="p">:</span> <span class="s2">&quot;float16&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">:</span> <span class="s2">&quot;float32&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">:</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">bool_</span><span class="p">:</span> <span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">int8</span><span class="p">:</span> <span class="s2">&quot;int8&quot;</span><span class="p">,</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">int16</span><span class="p">:</span> <span class="s2">&quot;int16&quot;</span><span class="p">,</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">int32</span><span class="p">:</span> <span class="s2">&quot;int32&quot;</span><span class="p">,</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">int64</span><span class="p">:</span> <span class="s2">&quot;int64&quot;</span><span class="p">,</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">uint8</span><span class="p">:</span> <span class="s2">&quot;uint8&quot;</span><span class="p">,</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">:</span> <span class="s2">&quot;bfloat16&quot;</span><span class="p">,</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">float16</span><span class="p">:</span> <span class="s2">&quot;float16&quot;</span><span class="p">,</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">:</span> <span class="s2">&quot;float32&quot;</span><span class="p">,</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">float64</span><span class="p">:</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">bool</span><span class="p">:</span> <span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">int8</span><span class="p">:</span> <span class="s2">&quot;int8&quot;</span><span class="p">,</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">int16</span><span class="p">:</span> <span class="s2">&quot;int16&quot;</span><span class="p">,</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">:</span> <span class="s2">&quot;int32&quot;</span><span class="p">,</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">:</span> <span class="s2">&quot;int64&quot;</span><span class="p">,</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">uint8</span><span class="p">:</span> <span class="s2">&quot;uint8&quot;</span><span class="p">,</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">uint16</span><span class="p">:</span> <span class="s2">&quot;uint16&quot;</span><span class="p">,</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">uint32</span><span class="p">:</span> <span class="s2">&quot;uint32&quot;</span><span class="p">,</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">uint64</span><span class="p">:</span> <span class="s2">&quot;uint64&quot;</span><span class="p">,</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">:</span> <span class="s2">&quot;bfloat16&quot;</span><span class="p">,</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">float16</span><span class="p">:</span> <span class="s2">&quot;float16&quot;</span><span class="p">,</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">:</span> <span class="s2">&quot;float32&quot;</span><span class="p">,</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">float64</span><span class="p">:</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">bool</span><span class="p">:</span> <span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+    <span class="n">jnp</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;int8&quot;</span><span class="p">):</span> <span class="s2">&quot;int8&quot;</span><span class="p">,</span>
+    <span class="n">jnp</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;int16&quot;</span><span class="p">):</span> <span class="s2">&quot;int16&quot;</span><span class="p">,</span>
+    <span class="n">jnp</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;int32&quot;</span><span class="p">):</span> <span class="s2">&quot;int32&quot;</span><span class="p">,</span>
+    <span class="n">jnp</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;int64&quot;</span><span class="p">):</span> <span class="s2">&quot;int64&quot;</span><span class="p">,</span>
+    <span class="n">jnp</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;uint8&quot;</span><span class="p">):</span> <span class="s2">&quot;uint8&quot;</span><span class="p">,</span>
+    <span class="n">jnp</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;uint16&quot;</span><span class="p">):</span> <span class="s2">&quot;uint16&quot;</span><span class="p">,</span>
+    <span class="n">jnp</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;uint32&quot;</span><span class="p">):</span> <span class="s2">&quot;uint32&quot;</span><span class="p">,</span>
+    <span class="n">jnp</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;uint64&quot;</span><span class="p">):</span> <span class="s2">&quot;uint64&quot;</span><span class="p">,</span>
+    <span class="n">jnp</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;bfloat16&quot;</span><span class="p">):</span> <span class="s2">&quot;bfloat16&quot;</span><span class="p">,</span>
+    <span class="n">jnp</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;float16&quot;</span><span class="p">):</span> <span class="s2">&quot;float16&quot;</span><span class="p">,</span>
+    <span class="n">jnp</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;float32&quot;</span><span class="p">):</span> <span class="s2">&quot;float32&quot;</span><span class="p">,</span>
+    <span class="n">jnp</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;float64&quot;</span><span class="p">):</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+    <span class="n">jnp</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;bool&quot;</span><span class="p">):</span> <span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+    <span class="n">jnp</span><span class="o">.</span><span class="n">int8</span><span class="p">:</span> <span class="s2">&quot;int8&quot;</span><span class="p">,</span>
+    <span class="n">jnp</span><span class="o">.</span><span class="n">int16</span><span class="p">:</span> <span class="s2">&quot;int16&quot;</span><span class="p">,</span>
+    <span class="n">jnp</span><span class="o">.</span><span class="n">int32</span><span class="p">:</span> <span class="s2">&quot;int32&quot;</span><span class="p">,</span>
+    <span class="n">jnp</span><span class="o">.</span><span class="n">int64</span><span class="p">:</span> <span class="s2">&quot;int64&quot;</span><span class="p">,</span>
+    <span class="n">jnp</span><span class="o">.</span><span class="n">uint8</span><span class="p">:</span> <span class="s2">&quot;uint8&quot;</span><span class="p">,</span>
+    <span class="n">jnp</span><span class="o">.</span><span class="n">uint16</span><span class="p">:</span> <span class="s2">&quot;uint16&quot;</span><span class="p">,</span>
+    <span class="n">jnp</span><span class="o">.</span><span class="n">uint32</span><span class="p">:</span> <span class="s2">&quot;uint32&quot;</span><span class="p">,</span>
+    <span class="n">jnp</span><span class="o">.</span><span class="n">uint64</span><span class="p">:</span> <span class="s2">&quot;uint64&quot;</span><span class="p">,</span>
+    <span class="n">jnp</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">:</span> <span class="s2">&quot;bfloat16&quot;</span><span class="p">,</span>
+    <span class="n">jnp</span><span class="o">.</span><span class="n">float16</span><span class="p">:</span> <span class="s2">&quot;float16&quot;</span><span class="p">,</span>
+    <span class="n">jnp</span><span class="o">.</span><span class="n">float32</span><span class="p">:</span> <span class="s2">&quot;float32&quot;</span><span class="p">,</span>
+    <span class="n">jnp</span><span class="o">.</span><span class="n">float64</span><span class="p">:</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+    <span class="n">jnp</span><span class="o">.</span><span class="n">bool_</span><span class="p">:</span> <span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+<span class="p">}</span>
 
 
 <span class="k">def</span> <span class="nf">_is_valid_dtypes_attributes</span><span class="p">(</span><span class="n">fn</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
