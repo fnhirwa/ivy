@@ -280,7 +280,7 @@ a data type determined by <span class="xref std std-ref">type-promotion</span>.<
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">32</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="fm">__rrshift__</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="n">b</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="go">ivy.array([32, 16,  8])</span>
 </pre></div>
@@ -1297,14 +1297,6 @@ the name function_name and the new args variable or kwargs as the new inputs.</p
 <dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]</p>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.slogdet">
-<span class="sig-name descname"><span class="pre">slogdet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.slogdet" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
 </dd></dl>
 
 <dl class="py method">
