@@ -819,7 +819,7 @@
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; a = 32</span>
 <span class="sd">        &gt;&gt;&gt; b = ivy.array([0, 1, 2])</span>
-<span class="sd">        &gt;&gt;&gt; y = b.__rrshift__(a)</span>
+<span class="sd">        &gt;&gt;&gt; y = a &gt;&gt; b</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        ivy.array([32, 16,  8])</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -831,7 +831,16 @@
 
     <span class="nd">_native_wrapper</span>
     <span class="k">def</span> <span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memodict</span><span class="o">=</span><span class="p">{}):</span>
-        <span class="k">return</span> <span class="n">to_ivy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">__deepcopy__</span><span class="p">(</span><span class="n">memodict</span><span class="p">))</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">to_ivy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">__deepcopy__</span><span class="p">(</span><span class="n">memodict</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="c1"># ToDo: try and find more elegant solution to jax inability to</span>
+            <span class="c1">#  deepcopy device arrays</span>
+            <span class="k">if</span> <span class="n">ivy</span><span class="o">.</span><span class="n">current_backend_str</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;jax&quot;</span><span class="p">:</span>
+                <span class="n">np_array</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span>
+                <span class="n">jax_array</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np_array</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">to_ivy</span><span class="p">(</span><span class="n">jax_array</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">to_ivy</span><span class="p">(</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">))</span>
 
     <span class="nd">_native_wrapper</span>
     <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
