@@ -25,7 +25,6 @@ Extensions
    extensions/max_pool2d.rst
    extensions/kaiser_window.rst
    extensions/moveaxis.rst
-   extensions/top_k.rst
    extensions/SparseArray:
     def __init__.rst
    extensions/NativeSparseArray:
