@@ -840,19 +840,17 @@ are being tested.</p>
     <span class="n">ret_gt</span> <span class="o">=</span> <span class="n">helpers</span><span class="o">.</span><span class="n">flatten_and_to_np</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">ret_gt</span><span class="p">)</span>
     <span class="k">for</span> <span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">ret_gt</span><span class="p">):</span>
         <span class="n">helpers</span><span class="o">.</span><span class="n">value_test</span><span class="p">(</span>
-            <span class="n">ret</span><span class="o">=</span><span class="n">ret</span><span class="p">,</span>
-            <span class="n">ret_from_gt</span><span class="o">=</span><span class="n">ret_gt</span><span class="p">,</span>
+            <span class="n">ret</span><span class="o">=</span><span class="n">u</span><span class="p">,</span>
+            <span class="n">ret_from_gt</span><span class="o">=</span><span class="n">v</span><span class="p">,</span>
             <span class="n">ground_truth_backend</span><span class="o">=</span><span class="s2">&quot;jax&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>We use <code class="xref py py-func docutils literal notranslate"><span class="pre">helpers.value_test()</span></code> to test the special method.</p></li>
-<li><p>We use the frontend class <code class="xref py py-class docutils literal notranslate"><span class="pre">DeviceArray</span></code> to calculate jax frontend special method’s result, which is then compared</p></li>
+<li><p>We use the frontend class <code class="xref py py-class docutils literal notranslate"><span class="pre">DeviceArray</span></code> to calculate jax frontend special method’s result, which is then compared to the regular frontend function’s result, when passed into the <code class="xref py py-func docutils literal notranslate"><span class="pre">helpers.value_test()</span></code>.</p></li>
+<li><p>We use <code class="xref py py-func docutils literal notranslate"><span class="pre">helpers.value_test()</span></code>,which takes an argument <code class="code docutils literal notranslate"><span class="pre">ground_truth_backend</span></code> which is the frontend that is to be tested.</p></li>
 </ul>
-<p>to the regular frontend function’s result, when passed into the <code class="xref py py-func docutils literal notranslate"><span class="pre">helpers.value_test()</span></code>.
-* We use <code class="xref py py-func docutils literal notranslate"><span class="pre">helpers.value_test()</span></code>,which takes an argument <code class="code docutils literal notranslate"><span class="pre">ground_truth_backend</span></code> which is the frontend that is
-to be tested.</p>
 </section>
 </section>
 <section id="hypothesis-helpers">
