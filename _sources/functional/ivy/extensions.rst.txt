@@ -29,7 +29,6 @@ Extensions
    extensions/pad.rst
    extensions/heaviside.rst
    extensions/median.rst
-   extensions/top_k.rst
    extensions/SparseArray:
     def __init__.rst
    extensions/NativeSparseArray:
