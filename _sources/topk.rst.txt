@@ -14,4 +14,7 @@ Topk
    :caption: Topk
 
    topk/numpy_topk.rst
+   topk/torch_topk.rst
+   topk/jax_topk.rst
+   topk/tf_topk.rst
 
