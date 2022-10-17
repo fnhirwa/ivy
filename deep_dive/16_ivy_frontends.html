@@ -336,7 +336,7 @@ argument.</p>
 </pre></div>
 </div>
 <p>Likewise, <code class="code docutils literal notranslate"><span class="pre">tan</span></code> is also placed under <code class="code docutils literal notranslate"><span class="pre">math</span></code>.
-By referring to the <a href="#id12"><span class="problematic" id="id13">`tf.math.tan`_</span></a> documentation, we add the same arguments,
+By referring to the <a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/math/tan">tf.math.tan</a> documentation, we add the same arguments,
 and simply wrap <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.tan()</span></code> in this case.
 Again, we do not support the <code class="code docutils literal notranslate"><span class="pre">name</span></code> argument for the reasons outlined above.</p>
 <p><strong>PyTorch</strong></p>
@@ -584,9 +584,9 @@ it’s reverse <code class="xref py py-meth docutils literal notranslate"><span 
     <span class="k">return</span> <span class="n">tf_frontend</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Here also, both of them simply call the frontend <code class="xref py py-func docutils literal notranslate"><span class="pre">tf_frontend.add()</span></code> under the
+<p>Here also, both of them simply call the frontend <code class="xref py py-func docutils literal notranslate"><span class="pre">tf_frontend.math.add()</span></code> under the
 hood. The functions with reverse operators should call the same frontend function
-as shown in the examples above. The implementation for the <code class="xref py py-func docutils literal notranslate"><span class="pre">tf_frontend.add()</span></code>
+as shown in the examples above. The implementation for the <code class="xref py py-func docutils literal notranslate"><span class="pre">tf_frontend.math.add()</span></code>
 is shown as follows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ivy/functional/frontends/tensorflow/math.py</span>
 <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
