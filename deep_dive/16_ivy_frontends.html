@@ -118,14 +118,14 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Framework Classes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../stateful/converters.html">Converters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../stateful/sequential.html">Sequential</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../stateful/activations.html">Activations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../stateful/module.html">Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../stateful/optimizers.html">Optimizers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../stateful/norms.html">Norms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../stateful/layers.html">Layers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../stateful/initializers.html">Initializers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stateful/module.html">Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stateful/sequential.html">Sequential</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stateful/optimizers.html">Optimizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stateful/activations.html">Activations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stateful/layers.html">Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stateful/converters.html">Converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stateful/norms.html">Norms</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Docs</span></p>
 <ul>
@@ -172,7 +172,7 @@
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
 <p>On top of the Ivy functional API and backend functional APIs, Ivy has another set of
 framework-specific frontend functional APIs, which play an important role in code
-transpilations, as explained <a href="#id5"><span class="problematic" id="id6">`here`_</span></a>.</p>
+transpilations, as explained <a href="#id6"><span class="problematic" id="id7">`here`_</span></a>.</p>
 <p>Let’s start with some examples to have a better idea on Ivy Frontends!</p>
 </section>
 <section id="the-frontend-basics">
@@ -265,7 +265,7 @@ sub-category of <code class="code docutils literal notranslate"><span class="pre
 <a class="reference external" href="https://numpy.org/doc/stable/reference/index.html">numpy mathematical functions</a> directory.</p>
 <p>The function arguments for this function are slightly more complex due to the extra
 optional arguments. Additional handling code is added to recover the behaviour
-according to the <a href="#id7"><span class="problematic" id="id8">`numpy.add`_</span></a> documentation. For example, if <code class="code docutils literal notranslate"><span class="pre">dtype</span></code> is specified,
+according to the <a href="#id8"><span class="problematic" id="id9">`numpy.add`_</span></a> documentation. For example, if <code class="code docutils literal notranslate"><span class="pre">dtype</span></code> is specified,
 the arguments will be cast to the desired type through <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.astype()</span></code>.
 The returned result is then obtained through <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.add()</span></code> just like the other
 examples.</p>
@@ -319,7 +319,7 @@ but we omit support for <code class="code docutils literal notranslate"><span cl
 </pre></div>
 </div>
 <p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">add()</span></code> function is categorised under the <code class="code docutils literal notranslate"><span class="pre">math</span></code> folder in the TensorFlow
-frontend. There are three arguments according to the <a class="reference external" href="https://github.com/tensorflow/tensorflow/blob/v2.10.0/tensorflow/python/ops/math_ops.py#L3926-L4004">tf.math.add</a> documentation, which are
+frontend. There are three arguments according to the <a href="#id10"><span class="problematic" id="id11">`tf.math.add`_</span></a> documentation, which are
 written accordingly as shown above. Just like the previous examples, the implementation
 wraps <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.add()</span></code>, which itself defers to backend-specific functions depending on
 which framework is set in Ivy’s backend.</p>
@@ -336,7 +336,7 @@ argument.</p>
 </pre></div>
 </div>
 <p>Likewise, <code class="code docutils literal notranslate"><span class="pre">tan</span></code> is also placed under <code class="code docutils literal notranslate"><span class="pre">math</span></code>.
-By referring to the <a href="#id9"><span class="problematic" id="id10">`tf.math.tan`_</span></a> documentation, we add the same arguments,
+By referring to the <a href="#id12"><span class="problematic" id="id13">`tf.math.tan`_</span></a> documentation, we add the same arguments,
 and simply wrap <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.tan()</span></code> in this case.
 Again, we do not support the <code class="code docutils literal notranslate"><span class="pre">name</span></code> argument for the reasons outlined above.</p>
 <p><strong>PyTorch</strong></p>
