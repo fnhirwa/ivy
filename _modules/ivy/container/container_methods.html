@@ -50,7 +50,6 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Functions</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/extensions.html">Extensions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/activations.html">Activations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/compilation.html">Compilation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/constants.html">Constants</a></li>
@@ -58,6 +57,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/data_type.html">Data type</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/device.html">Device</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/elementwise.html">Elementwise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/extensions.html">Extensions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/general.html">General</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/gradients.html">Gradients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/layers.html">Layers</a></li>
@@ -76,19 +76,19 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Data Classes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../data_classes/array.html">Array</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../data_classes/container.html">Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_classes/array.html">Array</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Framework Classes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../stateful/converters.html">Converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stateful/norms.html">Norms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stateful/optimizers.html">Optimizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stateful/initializers.html">Initializers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../stateful/sequential.html">Sequential</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../stateful/activations.html">Activations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../stateful/module.html">Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../stateful/optimizers.html">Optimizers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../stateful/norms.html">Norms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../stateful/layers.html">Layers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../stateful/initializers.html">Initializers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stateful/module.html">Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stateful/converters.html">Converters</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Docs</span></p>
 <ul>
@@ -10719,7 +10719,7 @@
 <span class="kn">from</span> <span class="nn">ivy.container.base</span> <span class="kn">import</span> <span class="n">ContainerBase</span>
 
 
-<span class="k">def</span> <span class="nf">static_sinc</span><span class="p">(</span>
+<div class="viewcode-block" id="static_sinc"><a class="viewcode-back" href="../../../functional/ivy/extensions/sinc/static_sinc_container.html#ivy.container.container_methods.static_sinc">[docs]</a><span class="k">def</span> <span class="nf">static_sinc</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
     <span class="o">/</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
@@ -10772,10 +10772,10 @@
 <span class="sd">        b: ivy.array([-0.090, 0.070, -0.057])</span>
 <span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 
 
-<span class="k">def</span> <span class="nf">sinc</span><span class="p">(</span>
+<div class="viewcode-block" id="sinc"><a class="viewcode-back" href="../../../functional/ivy/extensions/sinc/sinc_container.html#ivy.container.container_methods.sinc">[docs]</a><span class="k">def</span> <span class="nf">sinc</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -10827,10 +10827,10 @@
 <span class="sd">        b: ivy.array([-0.0909,0.0707,-0.0579])</span>
 <span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 
 
-<span class="k">def</span> <span class="nf">static_flatten</span><span class="p">(</span>
+<div class="viewcode-block" id="static_flatten"><a class="viewcode-back" href="../../../functional/ivy/extensions/flatten/static_flatten_container.html#ivy.container.container_methods.static_flatten">[docs]</a><span class="k">def</span> <span class="nf">static_flatten</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
     <span class="o">/</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
@@ -10873,10 +10873,10 @@
 <span class="sd">        b: ivy.array([9, 10, 11, 12, 13, 14, 15, 16])</span>
 <span class="sd">    }]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 
 
-<span class="k">def</span> <span class="nf">flatten</span><span class="p">(</span>
+<div class="viewcode-block" id="flatten"><a class="viewcode-back" href="../../../functional/ivy/extensions/flatten/flatten_container.html#ivy.container.container_methods.flatten">[docs]</a><span class="k">def</span> <span class="nf">flatten</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">start_dim</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
@@ -10913,10 +10913,10 @@
 <span class="sd">        b: ivy.array([9, 10, 11, 12, 13, 14, 15, 16])</span>
 <span class="sd">    }]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 
 
-<span class="k">def</span> <span class="nf">static_lcm</span><span class="p">(</span>
+<div class="viewcode-block" id="static_lcm"><a class="viewcode-back" href="../../../functional/ivy/extensions/lcm/static_lcm_container.html#ivy.container.container_methods.static_lcm">[docs]</a><span class="k">def</span> <span class="nf">static_lcm</span><span class="p">(</span>
     <span class="n">x1</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="n">x2</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="o">/</span><span class="p">,</span>
@@ -10960,10 +10960,10 @@
 <span class="sd">    }</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 
 
-<span class="k">def</span> <span class="nf">lcm</span><span class="p">(</span>
+<div class="viewcode-block" id="lcm"><a class="viewcode-back" href="../../../functional/ivy/extensions/lcm/lcm_container.html#ivy.container.container_methods.lcm">[docs]</a><span class="k">def</span> <span class="nf">lcm</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
     <span class="n">x2</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="o">*</span><span class="p">,</span>
@@ -11006,10 +11006,10 @@
 <span class="sd">    }</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 
 
-<span class="k">def</span> <span class="nf">static_hann_window</span><span class="p">(</span>
+<div class="viewcode-block" id="static_hann_window"><a class="viewcode-back" href="../../../functional/ivy/extensions/hann_window/static_hann_window_container.html#ivy.container.container_methods.static_hann_window">[docs]</a><span class="k">def</span> <span class="nf">static_hann_window</span><span class="p">(</span>
     <span class="n">window_length</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
     <span class="n">periodic</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">dtype</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Dtype</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeDtype</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -11053,10 +11053,10 @@
 <span class="sd">        b: ivy.array([0.0000, 0.3455, 0.9045, 0.9045, 0.3455])</span>
 <span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 
 
-<span class="k">def</span> <span class="nf">hann_window</span><span class="p">(</span>
+<div class="viewcode-block" id="hann_window"><a class="viewcode-back" href="../../../functional/ivy/extensions/hann_window/hann_window_container.html#ivy.container.container_methods.hann_window">[docs]</a><span class="k">def</span> <span class="nf">hann_window</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
     <span class="n">periodic</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">dtype</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Dtype</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeDtype</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -11095,10 +11095,10 @@
 <span class="sd">        b: ivy.array([0.0000, 0.3455, 0.9045, 0.9045, 0.3455])</span>
 <span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 
 
-<span class="k">def</span> <span class="nf">static_max_pool2d</span><span class="p">(</span>
+<div class="viewcode-block" id="static_max_pool2d"><a class="viewcode-back" href="../../../functional/ivy/extensions/max_pool2d/static_max_pool2d_container.html#ivy.container.container_methods.static_max_pool2d">[docs]</a><span class="k">def</span> <span class="nf">static_max_pool2d</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
     <span class="n">kernel</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
     <span class="n">strides</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
@@ -11149,10 +11149,10 @@
 <span class="sd">        b: (&lt;class ivy.array.array.Array&gt; shape=[2, 4, 3, 2])</span>
 <span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 
 
-<span class="k">def</span> <span class="nf">max_pool2d</span><span class="p">(</span>
+<div class="viewcode-block" id="max_pool2d"><a class="viewcode-back" href="../../../functional/ivy/extensions/max_pool2d/max_pool2d_container.html#ivy.container.container_methods.max_pool2d">[docs]</a><span class="k">def</span> <span class="nf">max_pool2d</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
     <span class="n">kernel</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
     <span class="n">strides</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
@@ -11205,10 +11205,10 @@
 <span class="sd">        b: (&lt;class ivy.array.array.Array&gt; shape=[2, 4, 3, 2])</span>
 <span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 
 
-<span class="k">def</span> <span class="nf">static_kaiser_window</span><span class="p">(</span>
+<div class="viewcode-block" id="static_kaiser_window"><a class="viewcode-back" href="../../../functional/ivy/extensions/kaiser_window/static_kaiser_window_container.html#ivy.container.container_methods.static_kaiser_window">[docs]</a><span class="k">def</span> <span class="nf">static_kaiser_window</span><span class="p">(</span>
     <span class="n">window_length</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
     <span class="n">periodic</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">beta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">12.0</span><span class="p">,</span>
@@ -11253,10 +11253,10 @@
 <span class="sd">        a: ivy.array([0.0367, 0.7753, 0.7753]),</span>
 <span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 
 
-<span class="k">def</span> <span class="nf">kaiser_window</span><span class="p">(</span>
+<div class="viewcode-block" id="kaiser_window"><a class="viewcode-back" href="../../../functional/ivy/extensions/kaiser_window/kaiser_window_container.html#ivy.container.container_methods.kaiser_window">[docs]</a><span class="k">def</span> <span class="nf">kaiser_window</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
     <span class="n">periodic</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">beta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">12.0</span><span class="p">,</span>
@@ -11301,10 +11301,10 @@
 <span class="sd">        a: ivy.array([0.0367, 0.7753, 0.7753]),</span>
 <span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 
 
-<span class="k">def</span> <span class="nf">static_moveaxis</span><span class="p">(</span>
+<div class="viewcode-block" id="static_moveaxis"><a class="viewcode-back" href="../../../functional/ivy/extensions/moveaxis/static_moveaxis_container.html#ivy.container.container_methods.static_moveaxis">[docs]</a><span class="k">def</span> <span class="nf">static_moveaxis</span><span class="p">(</span>
     <span class="n">a</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
     <span class="n">source</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
     <span class="n">destination</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
@@ -11348,10 +11348,10 @@
 <span class="sd">        b: (7, 6, 2)</span>
 <span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 
 
-<span class="k">def</span> <span class="nf">moveaxis</span><span class="p">(</span>
+<div class="viewcode-block" id="moveaxis"><a class="viewcode-back" href="../../../functional/ivy/extensions/moveaxis/moveaxis_container.html#ivy.container.container_methods.moveaxis">[docs]</a><span class="k">def</span> <span class="nf">moveaxis</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
     <span class="n">source</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
     <span class="n">destination</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
@@ -11390,10 +11390,10 @@
 <span class="sd">        b: (7, 6, 2)</span>
 <span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 
 
-<span class="k">def</span> <span class="nf">static_pad</span><span class="p">(</span>
+<div class="viewcode-block" id="static_pad"><a class="viewcode-back" href="../../../functional/ivy/extensions/pad/static_pad_container.html#ivy.container.container_methods.static_pad">[docs]</a><span class="k">def</span> <span class="nf">static_pad</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
     <span class="o">/</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
@@ -11431,10 +11431,10 @@
 <span class="sd">    wraps the function, and so the docstring for ivy.pad also applies to</span>
 <span class="sd">    this method with minimal changes.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 
 
-<span class="k">def</span> <span class="nf">pad</span><span class="p">(</span>
+<div class="viewcode-block" id="pad"><a class="viewcode-back" href="../../../functional/ivy/extensions/pad/pad_container.html#ivy.container.container_methods.pad">[docs]</a><span class="k">def</span> <span class="nf">pad</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
     <span class="o">/</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
@@ -11472,10 +11472,10 @@
 <span class="sd">    wraps the function, and so the docstring for ivy.pad also applies to</span>
 <span class="sd">    this method with minimal changes.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 
 
-<span class="k">def</span> <span class="nf">static_heaviside</span><span class="p">(</span>
+<div class="viewcode-block" id="static_heaviside"><a class="viewcode-back" href="../../../functional/ivy/extensions/heaviside/static_heaviside_container.html#ivy.container.container_methods.static_heaviside">[docs]</a><span class="k">def</span> <span class="nf">static_heaviside</span><span class="p">(</span>
     <span class="n">x1</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
     <span class="n">x2</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
     <span class="o">/</span><span class="p">,</span>
@@ -11516,10 +11516,10 @@
 <span class="sd">        b: ivy.array([1.0, 1.0])</span>
 <span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 
 
-<span class="k">def</span> <span class="nf">heaviside</span><span class="p">(</span>
+<div class="viewcode-block" id="heaviside"><a class="viewcode-back" href="../../../functional/ivy/extensions/heaviside/heaviside_container.html#ivy.container.container_methods.heaviside">[docs]</a><span class="k">def</span> <span class="nf">heaviside</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
     <span class="n">x2</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
     <span class="o">/</span><span class="p">,</span>
@@ -11555,10 +11555,10 @@
 <span class="sd">        b: ivy.array([1.0, 1.0])</span>
 <span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 
 
-<span class="k">def</span> <span class="nf">static_median</span><span class="p">(</span>
+<div class="viewcode-block" id="static_median"><a class="viewcode-back" href="../../../functional/ivy/extensions/median/static_median_container.html#ivy.container.container_methods.static_median">[docs]</a><span class="k">def</span> <span class="nf">static_median</span><span class="p">(</span>
     <span class="nb">input</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
     <span class="o">/</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
@@ -11603,10 +11603,10 @@
 <span class="sd">        b: (7, 6, 2)</span>
 <span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 
 
-<span class="k">def</span> <span class="nf">median</span><span class="p">(</span>
+<div class="viewcode-block" id="median"><a class="viewcode-back" href="../../../functional/ivy/extensions/median/median_container.html#ivy.container.container_methods.median">[docs]</a><span class="k">def</span> <span class="nf">median</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
     <span class="o">/</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
@@ -11649,10 +11649,10 @@
 <span class="sd">        b: ivy.array([4.5, 5.5, 1.])</span>
 <span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 
 
-<span class="k">def</span> <span class="nf">static_flipud</span><span class="p">(</span>
+<div class="viewcode-block" id="static_flipud"><a class="viewcode-back" href="../../../functional/ivy/extensions/flipud/static_flipud_container.html#ivy.container.container_methods.static_flipud">[docs]</a><span class="k">def</span> <span class="nf">static_flipud</span><span class="p">(</span>
     <span class="n">m</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
     <span class="o">/</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
@@ -11694,10 +11694,10 @@
 <span class="sd">        b: ivy.array([3, 2, 1, 0])</span>
 <span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 
 
-<span class="k">def</span> <span class="nf">flipud</span><span class="p">(</span>
+<div class="viewcode-block" id="flipud"><a class="viewcode-back" href="../../../functional/ivy/extensions/flipud/flipud_container.html#ivy.container.container_methods.flipud">[docs]</a><span class="k">def</span> <span class="nf">flipud</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
     <span class="o">/</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
@@ -11734,10 +11734,10 @@
 <span class="sd">        b: ivy.array([3, 2, 1, 0])</span>
 <span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 
 
-<span class="k">def</span> <span class="nf">static_fmod</span><span class="p">(</span>
+<div class="viewcode-block" id="static_fmod"><a class="viewcode-back" href="../../../functional/ivy/extensions/fmod/static_fmod_container.html#ivy.container.container_methods.static_fmod">[docs]</a><span class="k">def</span> <span class="nf">static_fmod</span><span class="p">(</span>
     <span class="n">x1</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
     <span class="n">x2</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
     <span class="o">/</span><span class="p">,</span>
@@ -11779,10 +11779,10 @@
 <span class="sd">        b: ivy.array([ nan,  nan,  nan])</span>
 <span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 
 
-<span class="k">def</span> <span class="nf">fmod</span><span class="p">(</span>
+<div class="viewcode-block" id="fmod"><a class="viewcode-back" href="../../../functional/ivy/extensions/fmod/fmod_container.html#ivy.container.container_methods.fmod">[docs]</a><span class="k">def</span> <span class="nf">fmod</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
     <span class="n">x2</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
     <span class="o">/</span><span class="p">,</span>
@@ -11819,10 +11819,10 @@
 <span class="sd">        b: ivy.array([ nan,  nan,  nan])</span>
 <span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 
 
-<span class="k">def</span> <span class="nf">static_fmax</span><span class="p">(</span>
+<div class="viewcode-block" id="static_fmax"><a class="viewcode-back" href="../../../functional/ivy/extensions/fmax/static_fmax_container.html#ivy.container.container_methods.static_fmax">[docs]</a><span class="k">def</span> <span class="nf">static_fmax</span><span class="p">(</span>
     <span class="n">x1</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
     <span class="n">x2</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
     <span class="o">/</span><span class="p">,</span>
@@ -11864,10 +11864,10 @@
 <span class="sd">        b: ivy.array([ 0,  0,  nan])</span>
 <span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 
 
-<span class="k">def</span> <span class="nf">fmax</span><span class="p">(</span>
+<div class="viewcode-block" id="fmax"><a class="viewcode-back" href="../../../functional/ivy/extensions/fmax/fmax_container.html#ivy.container.container_methods.fmax">[docs]</a><span class="k">def</span> <span class="nf">fmax</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
     <span class="n">x2</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
     <span class="o">/</span><span class="p">,</span>
@@ -11904,7 +11904,7 @@
 <span class="sd">        b: ivy.array([ 0,  0,  nan])</span>
 <span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 
 
 <span class="c1">#ivy.container.general</span>
