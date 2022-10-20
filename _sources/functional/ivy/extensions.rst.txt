@@ -13,10 +13,8 @@ Extensions
    :maxdepth: -1
    :caption: Extensions
 
-   extensions/sinc.rst
    extensions/flatten.rst
    extensions/vorbis_window.rst
-   extensions/lcm.rst
    extensions/hann_window.rst
    extensions/max_pool2d.rst
    extensions/kaiser_window.rst
@@ -27,8 +25,6 @@ Extensions
    extensions/heaviside.rst
    extensions/median.rst
    extensions/flipud.rst
-   extensions/fmod.rst
-   extensions/fmax.rst
 
 .. _`discord`: https://discord.gg/ZVQdvbzNQJ 
 .. _`extensions forum`: https://discord.com/channels/799879767196958751/1028298957870354542
