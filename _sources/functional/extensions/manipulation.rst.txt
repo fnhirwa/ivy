@@ -13,4 +13,10 @@ Manipulation
    :maxdepth: -1
    :caption: Manipulation
 
+   manipulation/flatten.rst
+   manipulation/moveaxis.rst
+   manipulation/ndenumerate.rst
+   manipulation/ndindex.rst
+   manipulation/heaviside.rst
+   manipulation/flipud.rst
 
