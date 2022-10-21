@@ -13,4 +13,5 @@ Statistical
    :maxdepth: -1
    :caption: Statistical
 
+   statistical/ArrayWithStatisticalExtensions.rst
 

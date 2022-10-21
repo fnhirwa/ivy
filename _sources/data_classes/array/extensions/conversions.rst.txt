@@ -13,4 +13,5 @@ Conversions
    :maxdepth: -1
    :caption: Conversions
 
+   conversions/ArrayWithConversionsExtensions.rst
 

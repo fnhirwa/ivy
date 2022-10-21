@@ -13,4 +13,5 @@ Layers
    :maxdepth: -1
    :caption: Layers
 
+   layers/ArrayWithLayersExtensions.rst
 

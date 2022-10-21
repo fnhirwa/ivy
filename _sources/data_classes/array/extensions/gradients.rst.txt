@@ -13,4 +13,5 @@ Gradients
    :maxdepth: -1
    :caption: Gradients
 
+   gradients/ArrayWithGradientsExtensions.rst
 

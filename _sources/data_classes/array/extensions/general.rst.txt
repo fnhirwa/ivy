@@ -13,4 +13,5 @@ General
    :maxdepth: -1
    :caption: General
 
+   general/ArrayWithGeneralExtensions.rst
 

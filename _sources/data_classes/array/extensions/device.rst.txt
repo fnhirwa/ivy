@@ -13,4 +13,5 @@ Device
    :maxdepth: -1
    :caption: Device
 
+   device/ArrayWithDeviceExtensions.rst
 
