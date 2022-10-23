@@ -23,7 +23,5 @@ Array methods
    array_methods/moveaxis.rst
    array_methods/heaviside.rst
    array_methods/flipud.rst
-   array_methods/vstack.rst
-   array_methods/hstack.rst
    array_methods/median.rst
 
