@@ -21,5 +21,4 @@ Manipulation
    manipulation/flipud.rst
    manipulation/vstack.rst
    manipulation/hstack.rst
-   manipulation/top_k.rst
 
