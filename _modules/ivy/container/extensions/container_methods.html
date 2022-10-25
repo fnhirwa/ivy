@@ -1542,6 +1542,24 @@
 <span class="sd">    out:</span>
 <span class="sd">        Optional output tuple, for writing the result to. Must have two Container,</span>
 <span class="sd">        with a shape that the returned tuple broadcast to.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    With :class:`ivy.Container` input:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([-1, 2, -4]), b=ivy.array([4., 5., 0.]))</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container.static_top_k(x, 2)</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: [</span>
+<span class="sd">            values = ivy.array([ 2, -1]),</span>
+<span class="sd">            indices = ivy.array([1, 0])</span>
+<span class="sd">        ],</span>
+<span class="sd">        b: [</span>
+<span class="sd">            values = ivy.array([5., 4.]),</span>
+<span class="sd">            indices = ivy.array([1, 0])</span>
+<span class="sd">        ]</span>
+<span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
         <span class="s2">&quot;top_k&quot;</span><span class="p">,</span>
@@ -1597,8 +1615,26 @@
 <span class="sd">    out:</span>
 <span class="sd">        Optional output tuple, for writing the result to. Must have two Container,</span>
 <span class="sd">        with a shape that the returned tuple broadcast to.</span>
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    With :class:`ivy.Container` input:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([-1, 2, -4]), b=ivy.array([4., 5., 0.]))</span>
+<span class="sd">    &gt;&gt;&gt; y = x.top_k(2)</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: [</span>
+<span class="sd">            values = ivy.array([ 2, -1]),</span>
+<span class="sd">            indices = ivy.array([1, 0])</span>
+<span class="sd">        ],</span>
+<span class="sd">        b: [</span>
+<span class="sd">            values = ivy.array([5., 4.]),</span>
+<span class="sd">            indices = ivy.array([1, 0])</span>
+<span class="sd">        ]</span>
+<span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_top_k</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
         <span class="n">k</span><span class="p">,</span>
         <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span>
         <span class="n">largest</span><span class="o">=</span><span class="n">largest</span><span class="p">,</span>
