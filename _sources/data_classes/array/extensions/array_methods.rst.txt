@@ -26,5 +26,6 @@ Array methods
    array_methods/flipud.rst
    array_methods/vstack.rst
    array_methods/hstack.rst
+   array_methods/top_k.rst
    array_methods/median.rst
 
