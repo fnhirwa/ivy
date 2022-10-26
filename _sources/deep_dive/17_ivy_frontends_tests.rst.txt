@@ -6,7 +6,7 @@ Ivy Frontend Tests
 .. _`ivy frontends tests forum`: https://discord.com/channels/799879767196958751/1028297887605587998
 .. _`test ivy`: https://github.com/unifyai/ivy/tree/db9a22d96efd3820fb289e9997eb41dda6570868/ivy_tests/test_ivy
 .. _`test_frontend_function`: https://github.com/unifyai/ivy/blob/591ac37a664ebdf2ca50a5b0751a3a54ee9d5934/ivy_tests/test_ivy/helpers.py#L1047
-.. _`discord`: https://discord.gg/ZVQdvbzNQJ
+.. _`discord`: https://discord.gg/sXyFF8tDtm
 .. _`Function Wrapping`: https://lets-unify.ai/ivy/deep_dive/3_function_wrapping.html
 .. _`open task`: https://lets-unify.ai/ivy/contributing/4_open_tasks.html#open-tasks
 .. _`Ivy Tests`: https://lets-unify.ai/ivy/deep_dive/15_ivy_tests.html
@@ -200,7 +200,7 @@ ivy.tan()
             available_dtypes=helpers.get_dtypes("float"),
         ),
         num_positional_args=helpers.num_positional_args(
-            fn_name="ivy.functional.frontends.torch.leaky_relu"
+            fn_name="ivy.functional.frontends.torch.nn.functional.leaky_relu"
         ),
         alpha=st.floats(min_value=0, max_value=1),
         with_inplace=st.booleans(),
@@ -487,6 +487,53 @@ This function requires us to create extra functions for generating :code:`shape`
 * We use :code:`helpers.get_dtypes` to generate :code:`dtype`, these are valid numeric data types specifically for Torch.
 * :func:`torch.full` supports :code:`out` so we generate :code:`with_out`.
 
+
+Alias functions
+^^^^^^^^^^^^^^^
+Let's take a quick walkthrough on testing the function alias as we know that such functions have same behavior as original functions.
+Taking an example of :func:`torch_frontend.greater` has an alias function :func:`torch_frontend.gt` which we need to make sure that it is working same as the targeted framework function :func:`torch.greater` and :func:`torch.gt`
+
+**PyTorch**
+
+.. code-block:: python
+    # greater
+    @handle_cmd_line_args
+    @given(
+        dtype_and_inputs=helpers.dtype_and_values(
+            available_dtypes=helpers.get_dtypes("float"),
+            num_arrays=2,
+            allow_inf=False,
+            shared_dtype=True,
+        ),
+        num_positional_args=helpers.num_positional_args(
+            fn_name="ivy.functional.frontends.torch.greater"
+        ),
+    )
+    def test_torch_greater(
+        dtype_and_inputs,
+        as_variable,
+        with_out,
+        num_positional_args,
+        native_array,
+    ):
+        input_dtype, inputs = dtype_and_inputs
+        helpers.test_frontend_function(
+            input_dtypes=input_dtype,
+            as_variable_flags=as_variable,
+            with_out=with_out,
+            has_aliases=True,
+            all_aliases=["gt"],
+            num_positional_args=num_positional_args,
+            native_array_flags=native_array,
+            frontend="torch",
+            fn_tree="greater",
+            input=inputs[0],
+            other=inputs[1],
+            out=None,
+        )
+
+We added a list of all aliases to the :code:`greater` function with full namespace path such that when we are testing the original function we will test for alias as well.
+During the frontend implementation, if a new alias is introduced you only need to go to the test function of original frontend function and add that alias to :code:`all_aliases` argument in the :func:`test_frontend_function` helper with it's full namespace.
 
 Frontend Instance Method Tests
 ------------------------------

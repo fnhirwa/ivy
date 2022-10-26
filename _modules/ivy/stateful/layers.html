@@ -41,8 +41,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../background.html">Background</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../design.html">Design</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../related_work.html">Related Work</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../extensions.html">Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../roadmap.html">Roadmap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../deep_dive.html">Deep Dive</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
@@ -50,7 +50,6 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Functions</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../functional/extensions.html">Extensions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/activations.html">Activations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/compilation.html">Compilation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/constants.html">Constants</a></li>
@@ -58,6 +57,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/data_type.html">Data type</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/device.html">Device</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/elementwise.html">Elementwise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/extensions.html">Extensions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/general.html">General</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/gradients.html">Gradients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/layers.html">Layers</a></li>
@@ -496,8 +496,6 @@
         <span class="n">filter_size</span><span class="p">,</span>
         <span class="n">strides</span><span class="p">,</span>
         <span class="n">padding</span><span class="p">,</span>
-        <span class="o">/</span><span class="p">,</span>
-        <span class="o">*</span><span class="p">,</span>
         <span class="n">weight_initializer</span><span class="o">=</span><span class="n">GlorotUniform</span><span class="p">(),</span>
         <span class="n">bias_initializer</span><span class="o">=</span><span class="n">Zeros</span><span class="p">(),</span>
         <span class="n">data_format</span><span class="o">=</span><span class="s2">&quot;NWC&quot;</span><span class="p">,</span>
@@ -545,10 +543,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_filter_size</span> <span class="o">=</span> <span class="n">filter_size</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_strides</span> <span class="o">=</span> <span class="n">strides</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_padding</span> <span class="o">=</span> <span class="n">padding</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_w_shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">filter_size</span><span class="p">,</span> <span class="n">input_channels</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_b_shape</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">)</span> <span class="k">if</span> <span class="n">data_format</span> <span class="o">==</span> <span class="s2">&quot;NWC&quot;</span> <span class="k">else</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_w_shape</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">(</span><span class="n">filter_size</span><span class="p">,</span> <span class="n">input_channels</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">data_format</span> <span class="o">==</span> <span class="s2">&quot;NWC&quot;</span>
+            <span class="k">else</span> <span class="p">(</span><span class="n">input_channels</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filter_size</span><span class="p">)</span>
         <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_b_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_w_init</span> <span class="o">=</span> <span class="n">weight_initializer</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_b_init</span> <span class="o">=</span> <span class="n">bias_initializer</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_data_format</span> <span class="o">=</span> <span class="n">data_format</span>
@@ -578,11 +578,7 @@
                 <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
             <span class="p">),</span>
             <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_b_init</span><span class="o">.</span><span class="n">create_variables</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_b_shape</span><span class="p">,</span>
-                <span class="n">device</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_output_channels</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_input_channels</span><span class="p">,</span>
-                <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_b_shape</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_output_channels</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span>
             <span class="p">),</span>
         <span class="p">}</span>
 
@@ -622,8 +618,6 @@
         <span class="n">filter_size</span><span class="p">,</span>
         <span class="n">strides</span><span class="p">,</span>
         <span class="n">padding</span><span class="p">,</span>
-        <span class="o">/</span><span class="p">,</span>
-        <span class="o">*</span><span class="p">,</span>
         <span class="n">weight_initializer</span><span class="o">=</span><span class="n">GlorotUniform</span><span class="p">(),</span>
         <span class="n">bias_initializer</span><span class="o">=</span><span class="n">Zeros</span><span class="p">(),</span>
         <span class="n">output_shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -674,10 +668,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_filter_size</span> <span class="o">=</span> <span class="n">filter_size</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_strides</span> <span class="o">=</span> <span class="n">strides</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_padding</span> <span class="o">=</span> <span class="n">padding</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_w_shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">filter_size</span><span class="p">,</span> <span class="n">input_channels</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_b_shape</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">)</span> <span class="k">if</span> <span class="n">data_format</span> <span class="o">==</span> <span class="s2">&quot;NWC&quot;</span> <span class="k">else</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_w_shape</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">(</span><span class="n">filter_size</span><span class="p">,</span> <span class="n">input_channels</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">data_format</span> <span class="o">==</span> <span class="s2">&quot;NWC&quot;</span>
+            <span class="k">else</span> <span class="p">(</span><span class="n">input_channels</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">,</span> <span class="n">filter_size</span><span class="p">)</span>
         <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_b_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_w_init</span> <span class="o">=</span> <span class="n">weight_initializer</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_b_init</span> <span class="o">=</span> <span class="n">bias_initializer</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_output_shape</span> <span class="o">=</span> <span class="n">output_shape</span>
@@ -706,11 +702,7 @@
                 <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
             <span class="p">),</span>
             <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_b_init</span><span class="o">.</span><span class="n">create_variables</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_b_shape</span><span class="p">,</span>
-                <span class="n">device</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_output_channels</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_input_channels</span><span class="p">,</span>
-                <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_b_shape</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_output_channels</span>
             <span class="p">),</span>
         <span class="p">}</span>
 
@@ -750,8 +742,6 @@
         <span class="n">filter_shape</span><span class="p">,</span>
         <span class="n">strides</span><span class="p">,</span>
         <span class="n">padding</span><span class="p">,</span>
-        <span class="o">/</span><span class="p">,</span>
-        <span class="o">*</span><span class="p">,</span>
         <span class="n">weight_initializer</span><span class="o">=</span><span class="n">GlorotUniform</span><span class="p">(),</span>
         <span class="n">bias_initializer</span><span class="o">=</span><span class="n">Zeros</span><span class="p">(),</span>
         <span class="n">data_format</span><span class="o">=</span><span class="s2">&quot;NHWC&quot;</span><span class="p">,</span>
@@ -798,12 +788,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_filter_shape</span> <span class="o">=</span> <span class="n">filter_shape</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_strides</span> <span class="o">=</span> <span class="n">strides</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_padding</span> <span class="o">=</span> <span class="n">padding</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_w_shape</span> <span class="o">=</span> <span class="n">filter_shape</span> <span class="o">+</span> <span class="p">[</span><span class="n">input_channels</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_b_shape</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_w_shape</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">filter_shape</span> <span class="o">+</span> <span class="p">[</span><span class="n">input_channels</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">]</span>
             <span class="k">if</span> <span class="n">data_format</span> <span class="o">==</span> <span class="s2">&quot;NHWC&quot;</span>
-            <span class="k">else</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">else</span> <span class="p">[</span><span class="n">input_channels</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">]</span> <span class="o">+</span> <span class="n">filter_shape</span>
         <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_b_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_w_init</span> <span class="o">=</span> <span class="n">weight_initializer</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_b_init</span> <span class="o">=</span> <span class="n">bias_initializer</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_data_format</span> <span class="o">=</span> <span class="n">data_format</span>
@@ -832,11 +822,7 @@
                 <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
             <span class="p">),</span>
             <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_b_init</span><span class="o">.</span><span class="n">create_variables</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_b_shape</span><span class="p">,</span>
-                <span class="n">device</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_output_channels</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_input_channels</span><span class="p">,</span>
-                <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_b_shape</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_output_channels</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span>
             <span class="p">),</span>
         <span class="p">}</span>
 
@@ -875,8 +861,6 @@
         <span class="n">filter_shape</span><span class="p">,</span>
         <span class="n">strides</span><span class="p">,</span>
         <span class="n">padding</span><span class="p">,</span>
-        <span class="o">/</span><span class="p">,</span>
-        <span class="o">*</span><span class="p">,</span>
         <span class="n">weight_initializer</span><span class="o">=</span><span class="n">GlorotUniform</span><span class="p">(),</span>
         <span class="n">bias_initializer</span><span class="o">=</span><span class="n">Zeros</span><span class="p">(),</span>
         <span class="n">output_shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -926,12 +910,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_filter_shape</span> <span class="o">=</span> <span class="n">filter_shape</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_strides</span> <span class="o">=</span> <span class="n">strides</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_padding</span> <span class="o">=</span> <span class="n">padding</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_w_shape</span> <span class="o">=</span> <span class="n">filter_shape</span> <span class="o">+</span> <span class="p">[</span><span class="n">input_channels</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_b_shape</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_w_shape</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">filter_shape</span> <span class="o">+</span> <span class="p">[</span><span class="n">input_channels</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">]</span>
             <span class="k">if</span> <span class="n">data_format</span> <span class="o">==</span> <span class="s2">&quot;NHWC&quot;</span>
-            <span class="k">else</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">else</span> <span class="p">[</span><span class="n">input_channels</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">]</span> <span class="o">+</span> <span class="n">filter_shape</span>
         <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_b_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_w_init</span> <span class="o">=</span> <span class="n">weight_initializer</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_b_init</span> <span class="o">=</span> <span class="n">bias_initializer</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_output_shape</span> <span class="o">=</span> <span class="n">output_shape</span>
@@ -961,11 +945,7 @@
                 <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
             <span class="p">),</span>
             <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_b_init</span><span class="o">.</span><span class="n">create_variables</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_b_shape</span><span class="p">,</span>
-                <span class="n">device</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_output_channels</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_input_channels</span><span class="p">,</span>
-                <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_b_shape</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_output_channels</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span>
             <span class="p">),</span>
         <span class="p">}</span>
 
@@ -1004,8 +984,6 @@
         <span class="n">filter_shape</span><span class="p">,</span>
         <span class="n">strides</span><span class="p">,</span>
         <span class="n">padding</span><span class="p">,</span>
-        <span class="o">/</span><span class="p">,</span>
-        <span class="o">*</span><span class="p">,</span>
         <span class="n">weight_initializer</span><span class="o">=</span><span class="n">GlorotUniform</span><span class="p">(),</span>
         <span class="n">bias_initializer</span><span class="o">=</span><span class="n">Zeros</span><span class="p">(),</span>
         <span class="n">data_format</span><span class="o">=</span><span class="s2">&quot;NHWC&quot;</span><span class="p">,</span>
@@ -1050,12 +1028,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_filter_shape</span> <span class="o">=</span> <span class="n">filter_shape</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_strides</span> <span class="o">=</span> <span class="n">strides</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_padding</span> <span class="o">=</span> <span class="n">padding</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_w_shape</span> <span class="o">=</span> <span class="n">filter_shape</span> <span class="o">+</span> <span class="p">[</span><span class="n">num_channels</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_b_shape</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_channels</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_w_shape</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">filter_shape</span> <span class="o">+</span> <span class="p">[</span><span class="n">num_channels</span><span class="p">]</span>
             <span class="k">if</span> <span class="n">data_format</span> <span class="o">==</span> <span class="s2">&quot;NHWC&quot;</span>
-            <span class="k">else</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_channels</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">else</span> <span class="p">[</span><span class="n">num_channels</span><span class="p">]</span> <span class="o">+</span> <span class="n">filter_shape</span>
         <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_b_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_channels</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_w_init</span> <span class="o">=</span> <span class="n">weight_initializer</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_b_init</span> <span class="o">=</span> <span class="n">bias_initializer</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_data_format</span> <span class="o">=</span> <span class="n">data_format</span>
@@ -1084,11 +1062,7 @@
                 <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
             <span class="p">),</span>
             <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_b_init</span><span class="o">.</span><span class="n">create_variables</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_b_shape</span><span class="p">,</span>
-                <span class="n">device</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_num_channels</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_num_channels</span><span class="p">,</span>
-                <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_b_shape</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_num_channels</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span>
             <span class="p">),</span>
         <span class="p">}</span>
 
@@ -1127,8 +1101,6 @@
         <span class="n">filter_shape</span><span class="p">,</span>
         <span class="n">strides</span><span class="p">,</span>
         <span class="n">padding</span><span class="p">,</span>
-        <span class="o">/</span><span class="p">,</span>
-        <span class="o">*</span><span class="p">,</span>
         <span class="n">weight_initializer</span><span class="o">=</span><span class="n">GlorotUniform</span><span class="p">(),</span>
         <span class="n">bias_initializer</span><span class="o">=</span><span class="n">Zeros</span><span class="p">(),</span>
         <span class="n">data_format</span><span class="o">=</span><span class="s2">&quot;NDHWC&quot;</span><span class="p">,</span>
@@ -1175,12 +1147,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_filter_shape</span> <span class="o">=</span> <span class="n">filter_shape</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_strides</span> <span class="o">=</span> <span class="n">strides</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_padding</span> <span class="o">=</span> <span class="n">padding</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_w_shape</span> <span class="o">=</span> <span class="n">filter_shape</span> <span class="o">+</span> <span class="p">[</span><span class="n">input_channels</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_b_shape</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_w_shape</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">filter_shape</span> <span class="o">+</span> <span class="p">[</span><span class="n">input_channels</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">]</span>
             <span class="k">if</span> <span class="n">data_format</span> <span class="o">==</span> <span class="s2">&quot;NDHWC&quot;</span>
-            <span class="k">else</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">else</span> <span class="p">[</span><span class="n">input_channels</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">]</span> <span class="o">+</span> <span class="n">filter_shape</span>
         <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_b_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">output_channels</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_w_init</span> <span class="o">=</span> <span class="n">weight_initializer</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_b_init</span> <span class="o">=</span> <span class="n">bias_initializer</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_data_format</span> <span class="o">=</span> <span class="n">data_format</span>
@@ -1209,11 +1181,7 @@
                 <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
             <span class="p">),</span>
             <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_b_init</span><span class="o">.</span><span class="n">create_variables</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_b_shape</span><span class="p">,</span>
-                <span class="n">device</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_output_channels</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_input_channels</span><span class="p">,</span>
-                <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_b_shape</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_output_channels</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span>
             <span class="p">),</span>
         <span class="p">}</span>
 
@@ -1252,8 +1220,6 @@
         <span class="n">filter_shape</span><span class="p">,</span>
         <span class="n">strides</span><span class="p">,</span>
         <span class="n">padding</span><span class="p">,</span>
-        <span class="o">/</span><span class="p">,</span>
-        <span class="o">*</span><span class="p">,</span>
         <span class="n">weight_initializer</span><span class="o">=</span><span class="n">GlorotUniform</span><span class="p">(),</span>
         <span class="n">bias_initializer</span><span class="o">=</span><span class="n">Zeros</span><span class="p">(),</span>
         <span class="n">output_shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -1339,11 +1305,7 @@
                 <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
             <span class="p">),</span>
             <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_b_init</span><span class="o">.</span><span class="n">create_variables</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_b_shape</span><span class="p">,</span>
-                <span class="n">device</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_output_channels</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_input_channels</span><span class="p">,</span>
-                <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_b_shape</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_output_channels</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span>
             <span class="p">),</span>
         <span class="p">}</span>
 
