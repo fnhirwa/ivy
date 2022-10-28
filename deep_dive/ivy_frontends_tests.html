@@ -628,6 +628,20 @@ This function requires us to create extra functions for generating <code class="
 <h3>Alias functions<a class="headerlink" href="#alias-functions" title="Permalink to this heading"></a></h3>
 <p>Let’s take a quick walkthrough on testing the function alias as we know that such functions have the same behavior as original functions.
 Taking an example of <code class="xref py py-func docutils literal notranslate"><span class="pre">torch_frontend.greater()</span></code> has an alias function <code class="xref py py-func docutils literal notranslate"><span class="pre">torch_frontend.gt()</span></code> which we need to make sure that it is working same as the targeted framework function <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.greater()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.gt()</span></code></p>
+<p>Code example for alias function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># in ivy/functional/frontends/torch/comparison_ops.py</span>
+<span class="nd">@to_ivy_arrays_and_back</span>
+<span class="k">def</span> <span class="nf">greater</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="nb">input</span><span class="p">,</span> <span class="n">other</span> <span class="o">=</span> <span class="n">torch_frontend</span><span class="o">.</span><span class="n">promote_types_of_torch_inputs</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">greater</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span>
+
+
+<span class="n">gt</span> <span class="o">=</span> <span class="n">greater</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>As you can see the <code class="xref py py-func docutils literal notranslate"><span class="pre">torch_frontend.gt()</span></code> is an alias to <code class="xref py py-func docutils literal notranslate"><span class="pre">torch_frontend.greater()</span></code> and below is how we update the unit test of <code class="xref py py-func docutils literal notranslate"><span class="pre">torch_frontend.greater()</span></code> to test the alias function as well.</p></li>
+</ul>
 <p><strong>PyTorch</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ivy_tests/test_ivy/test_frontends/test_torch/test_comparison_ops.py</span>
 <span class="nd">@handle_cmd_line_args</span>
