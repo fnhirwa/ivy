@@ -214,6 +214,7 @@ We wish to enable varying extents of dynamicism when compiling a graph with our 
 <p>Thus, both <code class="xref py py-mod docutils literal notranslate"><span class="pre">lax</span></code> and <code class="xref py py-mod docutils literal notranslate"><span class="pre">numpy</span></code> modules are created in the JAX frontend API.
 We start with the function <code class="xref py py-func docutils literal notranslate"><span class="pre">lax.add()</span></code> as an example.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># in ivy/functional/frontends/jax/lax/operators.py</span>
+<span class="nd">@to_ivy_arrays_and_back</span>
 <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </pre></div>
@@ -224,6 +225,7 @@ We organize the functions using the same categorizations as the original framewo
 In this case, <a class="reference external" href="https://jax.readthedocs.io/en/latest/_autosummary/jax.lax.add.html">jax.lax.add</a> has two arguments, and so we will also have the same two arguments in our Jax frontend <code class="xref py py-func docutils literal notranslate"><span class="pre">lax.add()</span></code>.
 In this case, the function will then simply return <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.add()</span></code>, which in turn will link to the backend-specific implementation <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.add()</span></code> according to the framework set in the backend.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># in ivy/functional/frontends/jax/lax/operators.py</span>
+<span class="nd">@to_ivy_arrays_and_back</span>
 <span class="k">def</span> <span class="nf">tan</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
@@ -273,6 +275,7 @@ Again, it has no bearing on input-output behaviour and so this is not a problem 
 <p>See the section “Unused Arguments” below for more details.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># in ivy/functional/frontends/numpy/mathematical_functions/trigonometric_functions.py</span>
 <span class="nd">@from_zero_dim_arrays_to_float</span>
+<span class="nd">@to_ivy_arrays_and_back</span>
 <span class="k">def</span> <span class="nf">tan</span><span class="p">(</span>
     <span class="n">x</span><span class="p">,</span>
     <span class="o">/</span><span class="p">,</span>
@@ -318,10 +321,29 @@ Ivy does not support the unique naming of individual operations, and so we omit 
 <p>Likewise, <code class="code docutils literal notranslate"><span class="pre">tan</span></code> is also placed under <code class="xref py py-mod docutils literal notranslate"><span class="pre">math</span></code>.
 By referring to the <a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/math/tan">tf.math.tan</a> documentation, we add the same arguments, and simply wrap <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.tan()</span></code> in this case.
 Again, we do not support the <code class="code docutils literal notranslate"><span class="pre">name</span></code> argument for the reasons outlined above.</p>
-<p><strong>NOTE:</strong> For The <a href="#id2"><span class="problematic" id="id3">:module:`tf.raw_ops`</span></a> many functions posses the same behavior as those of <a href="#id4"><span class="problematic" id="id5">:module:`tf`</span></a> namespace except that only the functions from <a href="#id6"><span class="problematic" id="id7">:mudule:`tf.raw_ops`</span></a> takes key-word only arguments.
-For this we have a designed decorator to wrap the <a href="#id8"><span class="problematic" id="id9">:module:`tf`</span></a> namespace function to satisfy this behavior. Let’s take an example of <code class="xref py py-func docutils literal notranslate"><span class="pre">tf.math.argmax()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">tf.raw_ops.ArgMax()</span></code>.</p>
-<p>This function is a frontend ivy implementation of <code class="xref py py-func docutils literal notranslate"><span class="pre">tf.math.argmax()</span></code>, the similar function in <a href="#id10"><span class="problematic" id="id11">:module:`tf.raw_ops`</span></a> has similar inputs and outputs except the <code class="xref py py-func docutils literal notranslate"><span class="pre">tf.raw_ops.ArgMax()</span></code> takes all inputs as key-word only.
+<p><strong>NOTE</strong></p>
+<p>For The <code class="xref py py-mod docutils literal notranslate"><span class="pre">tf.raw_ops</span></code> many functions posses the same behavior as those of <code class="xref py py-mod docutils literal notranslate"><span class="pre">tf</span></code> namespace except that only the functions from <code class="xref py py-mod docutils literal notranslate"><span class="pre">tf.raw_ops</span></code> takes key-word only arguments.
+For this we have a designed decorator to wrap the <code class="xref py py-mod docutils literal notranslate"><span class="pre">tf</span></code> namespace function to satisfy this behavior. Let’s take an example of <code class="xref py py-func docutils literal notranslate"><span class="pre">tf.math.argmax()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">tf.raw_ops.ArgMax()</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># in ivy/functional/frontends/tensorflow/math.py</span>
+<span class="nd">@to_ivy_arrays_and_back</span>
+<span class="k">def</span> <span class="nf">argmax</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">output_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">output_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;uint16&quot;</span><span class="p">,</span> <span class="s2">&quot;int16&quot;</span><span class="p">,</span> <span class="s2">&quot;int32&quot;</span><span class="p">,</span> <span class="s2">&quot;int64&quot;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">),</span> <span class="n">output_type</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">),</span> <span class="s2">&quot;int64&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This function is a frontend ivy implementation of <code class="xref py py-func docutils literal notranslate"><span class="pre">tf.math.argmax()</span></code>, the similar function in <code class="xref py py-mod docutils literal notranslate"><span class="pre">tf.raw_ops</span></code> has similar inputs and outputs except the <code class="xref py py-func docutils literal notranslate"><span class="pre">tf.raw_ops.ArgMax()</span></code> takes all inputs as key-word only.
 Let’s take a look on how we can handle such case.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># in ivy/functional/frontends/tensorflow/raw_ops.py</span>
+<span class="n">ArgMax</span> <span class="o">=</span> <span class="n">to_ivy_arrays_and_back</span><span class="p">(</span>
+    <span class="n">map_raw_ops_alias</span><span class="p">(</span>
+        <span class="n">tf_frontend</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">argmax</span><span class="p">,</span>
+        <span class="n">kwargs_to_update</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;dimension&quot;</span><span class="p">:</span> <span class="s2">&quot;axis&quot;</span><span class="p">},</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 <p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">tf_frontend.func_wrapper.map_raw_ops_alias()</span></code> is the one that is wrapping the behavior of <code class="xref py py-func docutils literal notranslate"><span class="pre">tf_frontend.math.argmax()</span></code>, change it behavior to receive key-word only arguments.
 In case you are curious to know more about this function wrapper you can find it here: <a class="reference external" href="https://github.com/unifyai/ivy/blob/54cc9cd955b84c50a1743dddddaf6e961f688dd5/ivy/functional/frontends/tensorflow/func_wrapper.py#L127">map_raw_ops_alias</a></p>
 <p><strong>PyTorch</strong></p>
