@@ -486,6 +486,7 @@ Before implementing the instance method or special method, make sure that the re
 </div>
 <p>Under the hood, this simply calls the frontend <code class="xref py py-func docutils literal notranslate"><span class="pre">np_frontend.add()</span></code> function, which itself is implemented as follows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ivy/functional/frontends/numpy/mathematical_functions/arithmetic_operations.py</span>
+<span class="nd">@to_ivy_arrays_and_back</span>
 <span class="k">def</span> <span class="nf">add</span><span class="p">(</span>
 <span class="n">x1</span><span class="p">,</span>
 <span class="n">x2</span><span class="p">,</span>
@@ -525,6 +526,7 @@ For example lets take a look at how <code class="xref py py-meth docutils litera
 The functions with reverse operators should call the same frontend function as shown in the examples above.
 The implementation for the <code class="xref py py-func docutils literal notranslate"><span class="pre">tf_frontend.math.add()</span></code> is shown as follows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ivy/functional/frontends/tensorflow/math.py</span>
+<span class="nd">@to_ivy_arrays_and_back</span>
 <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </pre></div>
@@ -574,6 +576,7 @@ The function can be accessed through calling <code class="xref py py-func docuti
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ivy/functional/frontends/tensorflow/math.py</span>
 <span class="kn">from</span> <span class="nn">ivy.functional.frontends.tensorflow</span> <span class="kn">import</span> <span class="n">promote_types_of_tensorflow_inputs</span>
 <span class="o">...</span>
+<span class="nd">@to_ivy_arrays_and_back</span>
 <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">promote_types_of_tensorflow_inputs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
