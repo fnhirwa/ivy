@@ -133,12 +133,12 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="ivy.functional.experimental.elementwise.allclose">
 <span class="sig-prename descclassname"><span class="pre">ivy.functional.experimental.elementwise.</span></span><span class="sig-name descname"><span class="pre">allclose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">equal_nan</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/functional/experimental/elementwise.html#allclose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.experimental.elementwise.allclose" title="Permalink to this definition"></a></dt>
-<dd><p>Returns a boolean array where two arrays are element-wise equal
+<dd><p>Returns a boolean if the two arrays are element-wise equal
 within a tolerance.
 The tolerance values are positive, typically very small numbers.
-The relative difference (rtol * abs(b)) and the absolute difference
+The relative difference (rtol * abs(x2)) and the absolute difference
 atol are added together to compare against the absolute difference
-between a and b.
+between x1 and x2.
 The default atol is not appropriate for comparing numbers that are
 much smaller than one</p>
 <dl class="field-list simple">

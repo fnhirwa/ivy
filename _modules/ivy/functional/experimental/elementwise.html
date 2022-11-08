@@ -850,12 +850,12 @@
     <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns a boolean array where two arrays are element-wise equal</span>
+<span class="sd">    Returns a boolean if the two arrays are element-wise equal</span>
 <span class="sd">    within a tolerance.</span>
 <span class="sd">    The tolerance values are positive, typically very small numbers.</span>
-<span class="sd">    The relative difference (rtol * abs(b)) and the absolute difference</span>
+<span class="sd">    The relative difference (rtol * abs(x2)) and the absolute difference</span>
 <span class="sd">    atol are added together to compare against the absolute difference</span>
-<span class="sd">    between a and b.</span>
+<span class="sd">    between x1 and x2.</span>
 <span class="sd">    The default atol is not appropriate for comparing numbers that are</span>
 <span class="sd">    much smaller than one</span>
 
