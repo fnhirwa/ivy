@@ -1651,8 +1651,8 @@
         <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        ivy.Container static method variant of ivy.isclose. This method simply wraps</span>
-<span class="sd">        the function, and so the docstring for ivy.isclose also applies to this method</span>
+<span class="sd">        ivy.Container static method variant of ivy.allclose. This method simply wraps</span>
+<span class="sd">        the function, and so the docstring for ivy.allclose also applies to this method</span>
 <span class="sd">        with minimal changes.</span>
 
 <span class="sd">        Parameters</span>
@@ -1686,7 +1686,7 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        ret</span>
-<span class="sd">            A new array holding the result is returned unless out is specified,</span>
+<span class="sd">            A new container holding the result is returned unless out is specified,</span>
 <span class="sd">            in which it is returned.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1719,16 +1719,16 @@
         <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        ivy.Container instance method variant of ivy.isclose. This method simply</span>
-<span class="sd">        wraps the function, and so the docstring for ivy.isclose also applies to this</span>
+<span class="sd">        ivy.Container instance method variant of ivy.allclose. This method simply</span>
+<span class="sd">        wraps the function, and so the docstring for ivy.allclose also applies to this</span>
 <span class="sd">        method with minimal changes.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        self</span>
-<span class="sd">            Input container.</span>
+<span class="sd">            Input container containing first input array.</span>
 <span class="sd">        x2</span>
-<span class="sd">            Input container.</span>
+<span class="sd">            Input container containing second input array.</span>
 <span class="sd">        rtol</span>
 <span class="sd">            The relative tolerance parameter.</span>
 <span class="sd">        atol</span>
@@ -1754,8 +1754,8 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        ret</span>
-<span class="sd">            A container with booleans holding the result is returned</span>
-<span class="sd">            unless out is specified, in which it is returned.</span>
+<span class="sd">            A new container holding the result is returned unless out is specified,</span>
+<span class="sd">            in which it is returned.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_allclose</span><span class="p">(</span>
