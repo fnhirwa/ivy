@@ -345,7 +345,7 @@ Let’s see how the <code class="code docutils literal notranslate"><span class=
 </pre></div>
 </div>
 <p>The decorator <code class="code docutils literal notranslate"><span class="pre">map_raw_ops_alias</span></code> here takes the existing behaviour of <code class="xref py py-func docutils literal notranslate"><span class="pre">tf_frontend.math.argmax()</span></code> as it’s first parameter, and changes all it’s arguments to key-word only, with consideration of the argument <code class="code docutils literal notranslate"><span class="pre">kwargs_to_update</span></code> passed to it as a dictionary indicating all updates in arguments names to be made, as for the case of <code class="code docutils literal notranslate"><span class="pre">dimension</span></code> replacing to <code class="code docutils literal notranslate"><span class="pre">axis</span></code> in the <code class="xref py py-func docutils literal notranslate"><span class="pre">tf.raw_ops.ArgMax()</span></code> function.
-The wrapper mentioned above is implemnted here <a class="reference external" href="https://github.com/unifyai/ivy/blob/54cc9cd955b84c50a1743dddddaf6e961f688dd5/ivy/functional/frontends/tensorflow/func_wrapper.py#L127">map_raw_ops_alias</a>  int the ivy codebase.</p>
+The wrapper mentioned above is implemnted here <a class="reference external" href="https://github.com/unifyai/ivy/blob/54cc9cd955b84c50a1743dddddaf6e961f688dd5/ivy/functional/frontends/tensorflow/func_wrapper.py#L127">map_raw_ops_alias</a>  in the ivy codebase.</p>
 <p><strong>PyTorch</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># in ivy/functional/frontends/torch/pointwise_ops.py</span>
 <span class="nd">@to_ivy_arrays_and_back</span>
