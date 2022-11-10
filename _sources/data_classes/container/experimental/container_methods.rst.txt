@@ -51,8 +51,6 @@ Container methods
    container_methods/logaddexp2.rst
    container_methods/static_signbit.rst
    container_methods/signbit.rst
-   container_methods/static_allclose.rst
-   container_methods/allclose.rst
    container_methods/static_max_pool2d.rst
    container_methods/max_pool2d.rst
    container_methods/static_max_pool1d.rst
@@ -95,8 +93,6 @@ Container methods
    container_methods/vsplit.rst
    container_methods/static_dsplit.rst
    container_methods/dsplit.rst
-   container_methods/dstack.rst
-   container_methods/static_dstack.rst
    container_methods/static_dirichlet.rst
    container_methods/dirichlet.rst
    container_methods/static_msort.rst
@@ -105,6 +101,4 @@ Container methods
    container_methods/median.rst
    container_methods/static_nanmean.rst
    container_methods/nanmean.rst
-   container_methods/static_unravel_index.rst
-   container_methods/unravel_index.rst
 
