@@ -32,6 +32,7 @@ Array methods
    array_methods/allclose.rst
    array_methods/fix.rst
    array_methods/nextafter.rst
+   array_methods/zeta.rst
    array_methods/max_pool1d.rst
    array_methods/max_pool2d.rst
    array_methods/max_pool3d.rst
@@ -56,7 +57,6 @@ Array methods
    array_methods/dsplit.rst
    array_methods/dstack.rst
    array_methods/atleast_2d.rst
-   array_methods/take_along_axis.rst
    array_methods/dirichlet.rst
    array_methods/msort.rst
    array_methods/median.rst
