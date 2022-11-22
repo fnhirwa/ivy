@@ -1687,11 +1687,17 @@
         <span class="n">value0</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">this_key_chain</span> <span class="o">=</span> <span class="n">key</span> <span class="k">if</span> <span class="n">key_chain</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="k">else</span> <span class="p">(</span><span class="n">key_chain</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">key</span><span class="p">)</span>
         <span class="n">is_container</span> <span class="o">=</span> <span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">is_ivy_container</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">values</span><span class="p">]</span>
+        <span class="k">def</span> <span class="nf">_found_in_key_chains</span><span class="p">(</span><span class="n">this_key_chain</span><span class="p">,</span> <span class="n">key_chains</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">key_chains</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">for</span> <span class="n">key_chain</span> <span class="ow">in</span> <span class="n">key_chains</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">this_key_chain</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">key_chain</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="kc">True</span>
+            <span class="k">return</span> <span class="kc">False</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">assert_identical</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">is_container</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">any</span><span class="p">(</span><span class="n">is_container</span><span class="p">):</span>
+            <span class="n">found</span> <span class="o">=</span> <span class="n">_found_in_key_chains</span><span class="p">(</span><span class="n">this_key_chain</span><span class="p">,</span> <span class="n">key_chains</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">key_chains</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">this_key_chain</span> <span class="ow">in</span> <span class="n">key_chains</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">to_apply</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span>
-                    <span class="n">this_key_chain</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">key_chains</span> <span class="ow">and</span> <span class="n">to_apply</span>
-                <span class="p">):</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">found</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">to_apply</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="ow">not</span> <span class="n">found</span> <span class="ow">and</span> <span class="n">to_apply</span><span class="p">):</span>
                     <span class="k">if</span> <span class="n">prune_unapplied</span><span class="p">:</span>
                         <span class="k">continue</span>
                     <span class="n">return_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value0</span>
@@ -1720,10 +1726,9 @@
                     <span class="k">continue</span>
                 <span class="n">return_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">ret</span>
             <span class="k">else</span><span class="p">:</span>
+                <span class="n">found</span> <span class="o">=</span> <span class="n">_found_in_key_chains</span><span class="p">(</span><span class="n">this_key_chain</span><span class="p">,</span> <span class="n">key_chains</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">key_chains</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="n">this_key_chain</span> <span class="ow">in</span> <span class="n">key_chains</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">to_apply</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span>
-                        <span class="n">this_key_chain</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">key_chains</span> <span class="ow">and</span> <span class="n">to_apply</span>
-                    <span class="p">):</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">found</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">to_apply</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="ow">not</span> <span class="n">found</span> <span class="ow">and</span> <span class="n">to_apply</span><span class="p">):</span>
                         <span class="k">if</span> <span class="n">prune_unapplied</span><span class="p">:</span>
                             <span class="k">continue</span>
                         <span class="n">return_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value0</span>
@@ -32166,8 +32171,8 @@
     <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">copy</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">order</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span>
     <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">order</span><span class="o">=</span><span class="s2">&quot;C&quot;</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    ivy.Container instance method variant of ivy.reshape. This method</span>
@@ -32200,9 +32205,6 @@
 <span class="sd">    map_sequences</span>
 <span class="sd">        Whether to also map method to sequences (lists, tuples).</span>
 <span class="sd">        Default is ``False``.</span>
-<span class="sd">    out</span>
-<span class="sd">        optional output container, for writing the result to. It must have a shape</span>
-<span class="sd">        that the inputs broadcast to.</span>
 <span class="sd">    order</span>
 <span class="sd">        Read the elements of the input container using this index order,</span>
 <span class="sd">        and place the elements into the reshaped array using this index order.</span>
@@ -32214,6 +32216,9 @@
 <span class="sd">        Note that the ‘C’ and ‘F’ options take no account of the memory layout</span>
 <span class="sd">        of the underlying array, and only refer to the order of indexing.</span>
 <span class="sd">        Default order is &#39;C&#39;</span>
+<span class="sd">    out</span>
+<span class="sd">        optional output container, for writing the result to. It must have a shape</span>
+<span class="sd">        that the inputs broadcast to.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
