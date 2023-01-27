@@ -1535,7 +1535,7 @@
         <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_function</span><span class="p">(</span>
             <span class="s2">&quot;dsplit&quot;</span><span class="p">,</span>
             <span class="n">ary</span><span class="p">,</span>
-            <span class="n">indices_or_sections</span><span class="p">,</span>
+            <span class="n">indices_or_sections</span><span class="o">=</span><span class="n">indices_or_sections</span><span class="p">,</span>
             <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
             <span class="n">to_apply</span><span class="o">=</span><span class="n">to_apply</span><span class="p">,</span>
             <span class="n">prune_unapplied</span><span class="o">=</span><span class="n">prune_unapplied</span><span class="p">,</span>
@@ -1599,7 +1599,9 @@
 <span class="sd">                ivy.array([[ 8.,  9., 10., 11.], [12., 13., 14., 15.]])]</span>
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_dsplit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indices_or_sections</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_dsplit</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">indices_or_sections</span><span class="o">=</span><span class="n">indices_or_sections</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span>
+        <span class="p">)</span></div>
 
 <div class="viewcode-block" id="ContainerWithManipulationExperimental.static_atleast_1d"><a class="viewcode-back" href="../../../../data_classes/container/experimental.html#ivy.container.experimental.ContainerWithManipulationExperimental.static_atleast_1d">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">static_atleast_1d</span><span class="p">(</span>
