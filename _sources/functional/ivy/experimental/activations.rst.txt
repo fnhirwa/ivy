@@ -14,5 +14,4 @@ Activations
    :caption: Activations
 
    activations/logit.rst
-   activations/prelu.rst
 
