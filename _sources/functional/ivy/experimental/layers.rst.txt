@@ -25,7 +25,5 @@ Layers
    layers/ifft.rst
    layers/embedding.rst
    layers/dft.rst
-   layers/interp.rst
-   layers/interpolate.rst
    layers/padding_ceil_mode.rst
 
