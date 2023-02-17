@@ -55,7 +55,6 @@ Experimental
    experimental/prelu.rst
    experimental/thresholded_relu.rst
    experimental/msort.rst
-   experimental/lexsort.rst
    experimental/triu_indices.rst
    experimental/vorbis_window.rst
    experimental/hann_window.rst
@@ -117,7 +116,6 @@ Experimental
    experimental/gradient.rst
    experimental/xlogy.rst
    experimental/real.rst
-   experimental/binarizer.rst
    experimental/isin.rst
    experimental/is_native_dtype.rst
    experimental/SparseArray.rst
