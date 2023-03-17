@@ -9782,27 +9782,6 @@
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">multi_dot</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="o">*</span><span class="n">x</span><span class="p">),</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="cond"><a class="viewcode-back" href="../../../functional/ivy/experimental/cond/cond_array.html#ivy.array.array_methods.cond">[docs]</a><span class="k">def</span> <span class="nf">cond</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    ivy.Array instance method variant of ivy.cond.</span>
-<span class="sd">    This method simply wraps the function, and so the docstring for</span>
-<span class="sd">    ivy.cond also applies to this method with minimal changes.</span>
-
-<span class="sd">    Examples</span>
-<span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; x = ivy.array([[1,2], [3,4]])</span>
-<span class="sd">    &gt;&gt;&gt; x.cond()</span>
-<span class="sd">    ivy.array(14.933034373659268)</span>
-
-<span class="sd">    &gt;&gt;&gt; x = ivy.array([[1,2], [3,4]])</span>
-<span class="sd">    &gt;&gt;&gt; x.cond(p=ivy.inf)</span>
-<span class="sd">    ivy.array(21.0)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">)</span></div>
-
-
 <div class="viewcode-block" id="dirichlet"><a class="viewcode-back" href="../../../functional/ivy/experimental/dirichlet/dirichlet_array.html#ivy.array.array_methods.dirichlet">[docs]</a><span class="k">def</span> <span class="nf">dirichlet</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span>
     <span class="o">/</span><span class="p">,</span>
@@ -13278,33 +13257,29 @@
     <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Computes the outer product between two arrays.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    self : ivy.Array</span>
-<span class="sd">        The first input array.</span>
-<span class="sd">    x2 : ivy.Array or ivy.NativeArray</span>
-<span class="sd">        The second input array.</span>
-<span class="sd">    out : ivy.Array, optional</span>
-<span class="sd">        Output array. If provided, it must have the same</span>
-<span class="sd">        shape as the expected output.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    ivy.Array</span>
-<span class="sd">        The outer product of the two arrays.</span>
-
-<span class="sd">    Examples</span>
-<span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; x = ivy.array([1, 2, 3])</span>
-<span class="sd">    &gt;&gt;&gt; y = ivy.array([4, 5])</span>
-<span class="sd">    &gt;&gt;&gt; z = x.outer(y)</span>
-<span class="sd">    &gt;&gt;&gt; print(z)</span>
-<span class="sd">    ivy.array([[ 4,  5],</span>
-<span class="sd">               [ 8, 10],</span>
-<span class="sd">               [12, 15]])</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">        Computes the outer product between two arrays.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        self : ivy.Array</span>
+<span class="sd">            The first input array.</span>
+<span class="sd">        x2 : ivy.Array or ivy.NativeArray</span>
+<span class="sd">            The second input array.</span>
+<span class="sd">        out : ivy.Array, optional</span>
+<span class="sd">            Output array. If provided, it must have the same shape as the expected output.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ivy.Array</span>
+<span class="sd">            The outer product of the two arrays.</span>
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; x = ivy.array([1, 2, 3])</span>
+<span class="sd">        &gt;&gt;&gt; y = ivy.array([4, 5])</span>
+<span class="sd">        &gt;&gt;&gt; z = x.outer(y)</span>
+<span class="sd">        &gt;&gt;&gt; print(z)</span>
+<span class="sd">        ivy.array([[ 4,  5],</span>
+<span class="sd">                   [ 8, 10],</span>
+<span class="sd">                   [12, 15]])</span>
+<span class="sd">        &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 
