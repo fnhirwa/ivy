@@ -272,9 +272,6 @@ document.write(`
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
   aria-label="Section Navigation">
-    <p class="bd-links__title" role="heading" aria-level="1">
-        Section Navigation
-    </p>
     <div class="bd-toc-item navbar-nav">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Overview</span></p>
 <ul class="nav bd-sidenav">
@@ -498,7 +495,25 @@ document.write(`
         <span class="k">return</span> <span class="n">x</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">to_ivy</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="n">ivy</span><span class="o">.</span><span class="n">is_native_array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span></div>
+    <span class="k">if</span> <span class="n">ivy</span><span class="o">.</span><span class="n">is_native_array</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_convert_other_native</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">x</span></div>
+
+
+<span class="n">backends</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;numpy&quot;</span><span class="p">,</span> <span class="s2">&quot;jax&quot;</span><span class="p">,</span> <span class="s2">&quot;torch&quot;</span><span class="p">,</span> <span class="s2">&quot;tensorflow&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="_convert_other_native"><a class="viewcode-back" href="../../../../docs/data_classes/array/ivy.data_classes.array.conversions.html#ivy.data_classes.array.conversions._convert_other_native">[docs]</a><span class="k">def</span> <span class="nf">_convert_other_native</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">new_backends</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">ivy</span><span class="o">.</span><span class="n">with_backend</span><span class="p">(</span><span class="n">back</span><span class="p">)</span> <span class="k">for</span> <span class="n">back</span> <span class="ow">in</span> <span class="n">backends</span> <span class="k">if</span> <span class="n">back</span> <span class="o">!=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">current_backend_str</span><span class="p">()</span>
+    <span class="p">)</span>
+    <span class="k">for</span> <span class="n">backend</span> <span class="ow">in</span> <span class="n">new_backends</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">backend</span><span class="o">.</span><span class="n">is_native_array</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">backend</span><span class="o">.</span><span class="n">Array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span></div>
 
 
 <span class="c1"># Wrapped #</span>
