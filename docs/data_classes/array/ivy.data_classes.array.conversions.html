@@ -325,6 +325,7 @@ document.write(`
 
 
 
+
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="ivy.data_classes.array.creation.html">Creation</a></li>
@@ -506,9 +507,16 @@ document.write(`
 <p>Collection of Ivy functions for wrapping functions to accept and return ivy.Array
 instances.</p>
 <dl class="py function">
-<dt class="sig sig-object py" id="ivy.data_classes.array.conversions._convert_other_native">
-<span class="sig-prename descclassname"><span class="pre">ivy.data_classes.array.conversions.</span></span><span class="sig-name descname"><span class="pre">_convert_other_native</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/data_classes/array/conversions.html#_convert_other_native"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.data_classes.array.conversions._convert_other_native" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="ivy.data_classes.array.conversions._backend_that_supports">
+<span class="sig-prename descclassname"><span class="pre">ivy.data_classes.array.conversions.</span></span><span class="sig-name descname"><span class="pre">_backend_that_supports</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/data_classes/array/conversions.html#_backend_that_supports"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.data_classes.array.conversions._backend_that_supports" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the first backend that supports the input x, or None if none do.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ivy.data_classes.array.conversions._convert_other_native_to_ivy">
+<span class="sig-prename descclassname"><span class="pre">ivy.data_classes.array.conversions.</span></span><span class="sig-name descname"><span class="pre">_convert_other_native_to_ivy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/data_classes/array/conversions.html#_convert_other_native_to_ivy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.data_classes.array.conversions._convert_other_native_to_ivy" title="Permalink to this definition">#</a></dt>
+<dd><p>Converts the input x to an ivy.Array instance, if it is a native array type</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="ivy.data_classes.array.conversions._to_ivy">
@@ -707,7 +715,8 @@ Default is <code class="docutils literal notranslate"><span class="pre">False</s
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.array.conversions._convert_other_native"><code class="docutils literal notranslate"><span class="pre">_convert_other_native()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.array.conversions._backend_that_supports"><code class="docutils literal notranslate"><span class="pre">_backend_that_supports()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.array.conversions._convert_other_native_to_ivy"><code class="docutils literal notranslate"><span class="pre">_convert_other_native_to_ivy()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.array.conversions._to_ivy"><code class="docutils literal notranslate"><span class="pre">_to_ivy()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.array.conversions._to_native"><code class="docutils literal notranslate"><span class="pre">_to_native()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.array.conversions.args_to_ivy"><code class="docutils literal notranslate"><span class="pre">args_to_ivy()</span></code></a></li>
